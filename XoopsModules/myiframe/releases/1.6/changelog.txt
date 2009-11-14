@@ -1,0 +1,13 @@
+Changelog
+
+************
+v1.6
+************
+- Bugs corrections
+
+************
+v1.5
+************
+- The module is fully compatible with Xoops Cube Legacy
+- The module's index page now will write the meta description
+- Minor changes
