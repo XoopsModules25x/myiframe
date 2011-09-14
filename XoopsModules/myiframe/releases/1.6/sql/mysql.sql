@@ -13,4 +13,4 @@ CREATE TABLE myiframe (
   frame_hits int(8) unsigned NOT NULL default '0',
   frame_url varchar(255) NOT NULL default '',
   PRIMARY KEY  (frame_frameid)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
