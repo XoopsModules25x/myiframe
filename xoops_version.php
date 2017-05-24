@@ -59,7 +59,7 @@ global $xoopsDB, $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig;
 if(is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['dirname'] && $xoopsModule->getVar('isactive')) {
     $i = 0;
     include_once XOOPS_ROOT_PATH.'/modules/myiframe/include/functions.php';
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
     if(myiframe_getmoduleoption('showinmenu')) {
         $sql = "SELECT * FROM ".$xoopsDB->prefix('myiframe')." ORDER BY frame_description";
         $result = $xoopsDB->query($sql);

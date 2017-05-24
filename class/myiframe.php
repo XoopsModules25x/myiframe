@@ -19,7 +19,7 @@ class myiframe extends XoopsObject
 
 	function myiframe($id = null)
 	{
-		$this->db =& Database::getInstance();
+		$this->db = Database::getInstance();
 		$this->initVar('frame_frameid',XOBJ_DTYPE_INT,null,false,10);
 		$this->initVar('frame_created',XOBJ_DTYPE_INT,null,false,10);
 		$this->initVar('frame_uid',XOBJ_DTYPE_INT,null,false,10);
