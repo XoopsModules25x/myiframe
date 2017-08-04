@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÐ¹ Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
 
@@ -95,4 +95,3 @@ function myiframe_set_metas($page_title = '', $meta_description = '', $meta_keyw
 		}
 	}
 }
-?>
