@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervй Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
 

@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÃ© Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
 
@@ -14,7 +14,7 @@ define("_MI_MYIFRAME_DESC","You can manage as many iframe pages as you want");
 
 // Pour le menu d'admin
 define("_MI_MYIFRAME_ADMENU1","Manage iFrames");
-
+define("_MI_MYIFRAME_ADMENU2","About");
 // New in version 1.4 *******************************************************************************************
 define("_MI_MYIFRAME_OPT0","Display iframes in the Xoops menu ?");
 define("_MI_MYIFRAME_OPT0_DSC","With this option, you can have links towards your iframes in the Xoops menu");

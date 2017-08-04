@@ -9,8 +9,8 @@ Replace 1 (in the expression b_myiframe_iframe_onthefly(1);) with the iframe ID 
 want to display.
 --------------------------------------------------------------------------------------------
 
-Comment créer des blocs à la volée.
-Dans le gestionnaire de blocs de Xoops, créez un bloc personnalisé au format Php dont
+Comment crÃ©er des blocs Ã  la volÃ©e.
+Dans le gestionnaire de blocs de Xoops, crÃ©ez un bloc personnalisÃ© au format Php dont
 le contenu est le suivant :
 
 include_once XOOPS_ROOT_PATH . '/modules/myiframe/blocks/myiframe_iframe.php';
