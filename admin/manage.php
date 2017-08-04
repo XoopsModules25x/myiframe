@@ -132,7 +132,7 @@ switch ($op) {
         $adminObject = \Xmf\Module\Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         if (isset($_GET['frameid'])) {
-            $frameid = intval($_GET['frameid']);
+            $frameid = (int)$_GET['frameid'];
             $frame   = $iframeHandler->get($frameid);
             AddEditForm($frameid, 'verifybeforeedit', _AM_MYIFRAME_CONFIG, $frame->getVar('frame_description', 'e'), $frame->getVar('frame_width', 'e'), $frame->getVar('frame_height', 'e'), $frame->getVar('frame_align', 'e'),
                         $frame->getVar('frame_frameborder', 'e'), $frame->getVar('frame_marginwidth', 'e'), $frame->getVar('frame_marginheight', 'e'), $frame->getVar('frame_scrolling', 'e'), $frame->getVar('frame_url', 'e'), _AM_MYIFRAME_UPDATE);
@@ -158,7 +158,7 @@ switch ($op) {
             $adminObject->displayNavigation(basename(__FILE__));
             echo '<h4>' . _AM_MYIFRAME_CONFIG . '</h4>';
             xoops_confirm(array('op'      => 'delete',
-                                'frameid' => intval($_GET['frameid']),
+                                'frameid' => (int)$_GET['frameid'],
                                 'ok'      => 1
                           ), 'manage.php', _AM_MYIFRAME_RUSUREDEL);
             include_once __DIR__ . '/admin_footer.php';
@@ -167,7 +167,7 @@ switch ($op) {
                 redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX);
                 exit();
             }
-            $frameid = intval($_POST['frameid']);
+            $frameid = (int)$_POST['frameid'];
             $critere = new Criteria('frame_frameid', $frameid, '=');
             $iframeHandler->deleteAll($critere);
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);

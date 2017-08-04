@@ -39,7 +39,7 @@ if (isset($_GET['iframeid'])) {
         'no',
         'auto'
     );
-    $frameid = intval($_GET['iframeid']);
+    $frameid = (int)$_GET['iframeid'];
 
     $frame = $iframeHandler->get($frameid);
 

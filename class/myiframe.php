@@ -36,7 +36,7 @@ class myiframe extends XoopsObject
             if (is_array($id)) {
                 $this->assignVars($id);
             } else {
-                $this->load(intval($id));
+                $this->load((int)$id);
             }
         } else {
             $this->setNew();
@@ -45,7 +45,7 @@ class myiframe extends XoopsObject
 
     public function load($id
     ) {
-        $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe') . ' WHERE frame_frameid=' . intval($id);
+        $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe') . ' WHERE frame_frameid=' . (int)$id;
         $myrow = $this->db->fetchArray($this->db->query($sql));
         $this->assignVars($myrow);
         if (!$myrow) {
@@ -68,7 +68,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
     public function &get($id
     ) {
         $ret = null;
-        $sql = 'SELECT * FROM ' . $this->db->prefix('myiframe') . '  WHERE frame_frameid=' . intval($id);
+        $sql = 'SELECT * FROM ' . $this->db->prefix('myiframe') . '  WHERE frame_frameid=' . (int)$id;
         if (!$result = $this->db->query($sql)) {
             return $ret;
         }
@@ -197,7 +197,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
 
     public function updatehits($frame_id
     ) {
-        $sql = sprintf('UPDATE %s SET frame_hits = frame_hits+1 WHERE frame_frameid=%u', $this->db->prefix('myiframe'), intval($frame_id));
+        $sql = sprintf('UPDATE %s SET frame_hits = frame_hits+1 WHERE frame_frameid=%u', $this->db->prefix('myiframe'), (int)$frame_id);
         $this->db->queryF($sql);
     }
 }

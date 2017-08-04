@@ -77,7 +77,7 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
         while ($myrow = $xoopsDB->fetchArray($result)) {
             if (xoops_trim($myrow['frame_description']) != '') {
                 $modversion['sub'][$i]['name'] = $myts->htmlSpecialChars($myrow['frame_description']);
-                $modversion['sub'][$i]['url']  = 'index.php?iframeid=' . intval($myrow['frame_frameid']);
+                $modversion['sub'][$i]['url']  = 'index.php?iframeid=' . (int)$myrow['frame_frameid'];
                 $i++;
             }
         }
