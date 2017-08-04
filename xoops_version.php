@@ -13,8 +13,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 $modversion = array(
+    'version'             => 1.66,
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2017/08/04',
     'name'                => _MI_MYIFRAME_NAME,
-    'version'             => 1.65,
     'description'         => _MI_MYIFRAME_DESC,
     'credits'             => '',
     'author'              => 'Instant Zero - http://xoops.instant-zero.com',
@@ -30,8 +32,6 @@ $modversion = array(
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS',
     'module_release'      => '05/07/2017',
-    'release_date'        => '2017/07/05',
-    'module_status'       => 'Test',
     'system_menu'         => 1,
     //sql tables
     'sqlfile'             => array('mysql' => 'sql/mysql.sql'),
@@ -85,21 +85,22 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
 }
 
 // Options
-$i                                      = 1;
-$modversion['config'][1]['name']        = 'showinmenu';
-$modversion['config'][1]['title']       = '_MI_MYIFRAME_OPT0';
-$modversion['config'][1]['description'] = '_MI_MYIFRAME_OPT0_DSC';
-$modversion['config'][1]['formtype']    = 'yesno';
-$modversion['config'][1]['valuetype']   = 'int';
-$modversion['config'][1]['default']     = 0;
-$i++;
-$modversion['config'][2]['name']        = 'showlist';
-$modversion['config'][2]['title']       = '_MI_MYIFRAME_OPT1';
-$modversion['config'][2]['description'] = '_MI_MYIFRAME_OPT1_DSC';
-$modversion['config'][2]['formtype']    = 'yesno';
-$modversion['config'][2]['valuetype']   = 'int';
-$modversion['config'][2]['default']     = 1;
-
+$modversion['config'][] = [
+    'name'        => 'showinmenu',
+    'title'       => '_MI_MYIFRAME_OPT0',
+    'description' => '_MI_MYIFRAME_OPT0_DSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
+$modversion['config'][] = [
+    'name'        => 'showlist',
+    'title'       => '_MI_MYIFRAME_OPT1',
+    'description' => '_MI_MYIFRAME_OPT1_DSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
 // Search
 $modversion['hasSearch'] = 0;
 
