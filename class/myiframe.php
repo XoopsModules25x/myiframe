@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÐ¹ Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
 
@@ -17,9 +17,9 @@ class myiframe extends XoopsObject
 {
 	var $db;
 
-	function myiframe($id = null)
+	function __construct($id = null)
 	{
-		$this->db = Database::getInstance();
+		$this->db =& Database::getInstance();
 		$this->initVar('frame_frameid',XOBJ_DTYPE_INT,null,false,10);
 		$this->initVar('frame_created',XOBJ_DTYPE_INT,null,false,10);
 		$this->initVar('frame_uid',XOBJ_DTYPE_INT,null,false,10);
@@ -81,7 +81,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
 		return $ret;
 	}
 
-	function insert(&$objet, $force = false) {
+	function insert(XoopsObject $objet, $force = false) {
 		if (get_class($objet) != 'myiframe') {
 			return false;
 		}
@@ -122,7 +122,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
 	}
 
 
-	function delete(&$objet, $force = false)
+	function delete(XoopsObject $objet, $force = false)
 	{
 		if (get_class($objet) != 'objet') {
 			return false;
