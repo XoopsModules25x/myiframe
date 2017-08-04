@@ -6,5 +6,4 @@
  * ****************************************************************************
  */
 
-define("_MYIFRAME_FRAME_ERROR",	"Error, the selected iFrame does not exists");
-?>
+define("_MYIFRAME_FRAME_ERROR", "Error, the selected iFrame does not exists");

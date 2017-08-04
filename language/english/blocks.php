@@ -6,5 +6,4 @@
  * ****************************************************************************
  */
 
-define("_MB_MYIFRAME_IFRAME","Select the iframe to display");
-?>
+define("_MB_MYIFRAME_IFRAME", "Select the iframe to display");
