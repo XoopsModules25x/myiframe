@@ -9,7 +9,7 @@
 require_once __DIR__ . '/../../mainfile.php';
 require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 $GLOBALS['xoopsOption']['template_main'] = 'myiframe.tpl';
-require_once(XOOPS_ROOT_PATH . '/header.php');
+require_once XOOPS_ROOT_PATH . '/header.php';
 
 $suplparam = '';
 if (isset($_GET)) {
@@ -88,4 +88,4 @@ if (isset($_GET['iframeid'])) {
         $xoopsTpl->assign('frame_error', _MYIFRAME_FRAME_ERROR);
     }
 }
-include(XOOPS_ROOT_PATH . '/footer.php');
+include XOOPS_ROOT_PATH . '/footer.php';
