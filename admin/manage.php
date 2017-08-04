@@ -104,8 +104,8 @@ if (isset($_POST['op'])) {
 
 switch ($op) {
     case 'verifybeforeedit':
-        if (isset($_POST['submit']) && $_POST['submit'] != '') {
-            if ($_POST['longdesc'] == '') {
+        if (isset($_POST['submit']) && $_POST['submit'] !== '') {
+            if ($_POST['longdesc'] === '') {
                 xoops_cp_header();
                 $adminObject = \Xmf\Module\Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
@@ -192,8 +192,8 @@ switch ($op) {
         break;
 
     case 'verifytoadd':
-        if (isset($_POST['submit']) && $_POST['submit'] != '') {
-            if ($_POST['url'] == '') {
+        if (isset($_POST['submit']) && $_POST['submit'] !== '') {
+            if ($_POST['url'] === '') {
                 xoops_cp_header();
                 $adminObject = \Xmf\Module\Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
@@ -254,14 +254,14 @@ switch ($op) {
             foreach ($frarray as $frame) {
                 $action_edit   = "<a href='" . $baseurl . '?op=edit&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/edit.png' alt='" . _AM_MYIFRAME_EDIT . "'></a>";
                 $action_delete = "<a href='" . $baseurl . '?op=delete&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/delete.png' alt='" . _AM_MYIFRAME_DELETE . "'></a>";
-                if (xoops_trim($frame->getVar('frame_description') == '')) {
+                if (xoops_trim($frame->getVar('frame_description') === '')) {
                     $liendesc = $frame->getVar('frame_url');
                 } else {
                     $liendesc = "<a href='" . XOOPS_URL . '/modules/myiframe/index.php?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . '</a>';
                 }
                 echo "<tr class='" . $class . "'><td align='center'>" . $frame->getVar('frame_frameid') . "</td><td align='center'>" . $liendesc . "</td><td align='center'>" . formatTimestamp($frame->getVar('frame_created'))
                      . "</td><td align='center'>" . $frame->getVar('frame_hits') . "</td><td align='center'>" . $action_edit . '&nbsp;-&nbsp;' . $action_delete . "</td></tr>\n";
-                $class = ($class == 'even') ? 'odd' : 'even';
+                $class = ($class === 'even') ? 'odd' : 'even';
             }
         }
         echo "<tr class='" . $class . "'><td colspan='5' align='center'><form name='faddframe' method='post' action='manage.php'><input type='hidden' name='op' value='addframe'><input type='submit' name='submit' value='" . _AM_MYIFRAME_ADD

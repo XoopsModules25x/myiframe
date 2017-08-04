@@ -109,7 +109,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function insert(XoopsObject $objet, $force = false
     ) {
-        if (get_class($objet) != 'myiframe') {
+        if (get_class($objet) !== 'myiframe') {
             return false;
         }
         if (!$objet->isDirty()) {
@@ -158,7 +158,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function delete(XoopsObject $objet, $force = false
     ) {
-        if (get_class($objet) != 'objet') {
+        if (get_class($objet) !== 'objet') {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE frame_frameid = %u', $this->db->prefix('myiframe'), $objet->getVar('frame_frameid'));
@@ -185,7 +185,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' ' . $criteria->renderWhere();
-            if ($criteria->getSort() != '') {
+            if ($criteria->getSort() !== '') {
                 $sql .= ' ORDER BY ' . $criteria->getSort() . ' ' . $criteria->getOrder();
             }
             $limit = $criteria->getLimit();
