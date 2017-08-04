@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÐ¹ Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
 
@@ -59,6 +59,6 @@ function b_myiframe_iframe_onthefly($options)
 
 	$tpl = new XoopsTpl();
 	$tpl->assign('block', $block);
-	$tpl->display('db:myiframe_block_show.html');
+	$tpl->display('db:myiframe_block_show.tpl');
 }
 ?>

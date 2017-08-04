@@ -1,6 +1,11 @@
 Changelog
 
 ************
+v1.65
+************
+- Modified for XOOPS 2.5.8+ aerograf
+
+************
 v1.6
 ************
 - Bugs corrections

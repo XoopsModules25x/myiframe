@@ -2,13 +2,13 @@
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) HervÐ¹ Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
 
 require_once '../../mainfile.php';
 require_once XOOPS_ROOT_PATH.'/modules/myiframe/include/functions.php';
-$xoopsOption['template_main'] = 'myiframe.html';
+$xoopsOption['template_main'] = 'myiframe.tpl';
 require_once(XOOPS_ROOT_PATH.'/header.php');
 
 $suplparam = '';
