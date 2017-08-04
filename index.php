@@ -77,7 +77,7 @@ if (isset($_GET['iframeid'])) {
                 if (xoops_trim($frame->getVar('frame_description') == '')) {
                     $liendesc = $frame->getVar('frame_url');
                 } else {
-                    $liendesc = "<a href='" . $baseurl . '?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . "</a>";
+                    $liendesc = "<a href='" . $baseurl . '?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . '</a>';
                 }
                 $iframe['list'] = $liendesc;
                 $xoopsTpl->append('iframes', $iframe);

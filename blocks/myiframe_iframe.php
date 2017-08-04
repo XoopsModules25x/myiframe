@@ -49,7 +49,7 @@ function b_myiframe_iframe_edit($options)
     $critere->setSort('frame_description');
     $frarray = $iframeHandler->getObjects($critere);
 
-    $form = "" . _MB_MYIFRAME_IFRAME . "&nbsp;<select name='options[0]'>";
+    $form = '' . _MB_MYIFRAME_IFRAME . "&nbsp;<select name='options[0]'>";
     foreach ($frarray as $oneframe) {
         $form .= "<option value='" . $oneframe->getVar('frame_frameid') . "'";
         if ($options[0] == $oneframe->getVar('frame_frameid')) {
