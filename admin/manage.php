@@ -2,7 +2,7 @@
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Herv� Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
 
@@ -46,7 +46,7 @@ $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
  * @param $url
  * @param $LabelSubmitButton
  */
-function AddEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, $align, $frameborder, $marginwidth, $marginheight, $scrolling, $url, $LabelSubmitButton)
+function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, $align, $frameborder, $marginwidth, $marginheight, $scrolling, $url, $LabelSubmitButton)
 {
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     global $xoopsModule;

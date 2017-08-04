@@ -13,9 +13,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 
 /**
- * Class myiframe
+ * Class Myiframe
  */
-class myiframe extends XoopsObject
+class Myiframe extends XoopsObject
 {
     public $db;
 
@@ -23,8 +23,8 @@ class myiframe extends XoopsObject
      * myiframe constructor.
      * @param null $id
      */
-    public function __construct($id = null
-    ) {
+    public function __construct($id = null)
+    {
         $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar('frame_frameid', XOBJ_DTYPE_INT, null, false, 10);
         $this->initVar('frame_created', XOBJ_DTYPE_INT, null, false, 10);
@@ -53,8 +53,8 @@ class myiframe extends XoopsObject
     /**
      * @param $id
      */
-    public function load($id
-    ) {
+    public function load($id)
+    {
         $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe') . ' WHERE frame_frameid=' . (int)$id;
         $myrow = $this->db->fetchArray($this->db->query($sql));
         $this->assignVars($myrow);
@@ -73,21 +73,22 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      * @param bool $isNew
      * @return myiframe
      */
-    public function &create($isNew = true
-    ) {
-        $objet = new myiframe();
+    public function create($isNew = true)
+    {
+        $object = new Myiframe();
         if ($isNew) {
-            $objet->setNew();
+            $object->setNew();
         }
-        return $objet;
+
+        return $object;
     }
 
     /**
      * @param int $id
      * @return myiframe|null
      */
-    public function &get($id
-    ) {
+    public function &get($id)
+    {
         $ret = null;
         $sql = 'SELECT * FROM ' . $this->db->prefix('myiframe') . '  WHERE frame_frameid=' . (int)$id;
         if (!$result = $this->db->query($sql)) {
@@ -95,48 +96,48 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         }
         $numrows = $this->db->getRowsNum($result);
         if ($numrows == 1) {
-            $objet = new myiframe();
-            $objet->assignVars($this->db->fetchArray($result));
-            return $objet;
+            $object = new Myiframe();
+            $object->assignVars($this->db->fetchArray($result));
+            return $object;
         }
+
         return $ret;
     }
 
     /**
-     * @param XoopsObject $objet
+     * @param XoopsObject $object
      * @param bool        $force
      * @return bool
      */
-    public function insert(XoopsObject $objet, $force = false
-    ) {
-        if (get_class($objet) !== 'myiframe') {
+    public function insert(XoopsObject $object, $force = false)
+    {
+        if (get_class($object) !== 'myiframe') {
             return false;
         }
-        if (!$objet->isDirty()) {
+        if (!$object->isDirty()) {
             return true;
         }
-        if (!$objet->cleanVars()) {
-            foreach ($objet->getErrors() as $oneerror) {
+        if (!$object->cleanVars()) {
+            foreach ($object->getErrors() as $oneerror) {
                 trigger_error($oneerror);
             }
             return false;
         }
-        foreach ($objet->cleanVars as $k => $v) {
+        foreach ($object->cleanVars as $k => $v) {
             ${$k} = $v;
         }
 
-        if ($objet->isNew()) {
-            $format
-                   = 'INSERT INTO %s (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
-            $sql   = sprintf($format, $this->db->prefix('myiframe'), $frame_created, $frame_uid, $this->db->quoteString($frame_description), $this->db->quoteString($frame_width), $this->db->quoteString($frame_height), $frame_align,
-                             $frame_frameborder, $frame_marginwidth, $frame_marginheight, $frame_scrolling, $frame_hits, $this->db->quoteString($frame_url));
-            $force = true;
+        if ($object->isNew()) {
+            $format = 'INSERT INTO %s (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
+            $sql    = sprintf($format, $this->db->prefix('myiframe'), $frame_created, $frame_uid, $this->db->quoteString($frame_description), $this->db->quoteString($frame_width), $this->db->quoteString($frame_height), $frame_align, $frame_frameborder, $frame_marginwidth, $frame_marginheight,
+                              $frame_scrolling, $frame_hits, $this->db->quoteString($frame_url));
+            $force  = true;
         } else {
             $format = 'UPDATE %s SET frame_description=%s, frame_width=%s, frame_height=%s, frame_align=%d, frame_frameborder=%d, frame_marginwidth=%d, frame_marginheight=%d, frame_scrolling=%d, frame_hits=%u, frame_url=%s WHERE frame_frameid=%u';
-            $sql    = sprintf($format, $this->db->prefix('myiframe'), $this->db->quoteString($frame_description), $this->db->quoteString($frame_width), $this->db->quoteString($frame_height), $frame_align, $frame_frameborder, $frame_marginwidth,
-                              $frame_marginheight, $frame_scrolling, $frame_hits, $this->db->quoteString($frame_url), $frame_frameid);
+            $sql    = sprintf($format, $this->db->prefix('myiframe'), $this->db->quoteString($frame_description), $this->db->quoteString($frame_width), $this->db->quoteString($frame_height), $frame_align, $frame_frameborder, $frame_marginwidth, $frame_marginheight, $frame_scrolling, $frame_hits,
+                              $this->db->quoteString($frame_url), $frame_frameid);
         }
-        if (false != $force) {
+        if (false !== $force) {
             $result = $this->db->queryF($sql);
         } else {
             $result = $this->db->query($sql);
@@ -147,22 +148,23 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         if (empty($frame_frameid)) {
             $frame_frameid = $this->db->getInsertId();
         }
-        $objet->assignVar('frame_frameid', $frame_frameid);
+        $object->assignVar('frame_frameid', $frame_frameid);
+
         return $frame_frameid;
     }
 
     /**
-     * @param XoopsObject $objet
+     * @param XoopsObject $object
      * @param bool        $force
      * @return bool
      */
-    public function delete(XoopsObject $objet, $force = false
-    ) {
-        if (get_class($objet) !== 'myiframe') {
+    public function delete(XoopsObject $object, $force = false)
+    {
+        if (get_class($object) !== 'myiframe') {
             return false;
         }
-        $sql = sprintf('DELETE FROM %s WHERE frame_frameid = %u', $this->db->prefix('myiframe'), $objet->getVar('frame_frameid'));
-        if (false != $force) {
+        $sql = sprintf('DELETE FROM %s WHERE frame_frameid = %u', $this->db->prefix('myiframe'), $object->getVar('frame_frameid'));
+        if (false !== $force) {
             $result = $this->db->queryF($sql);
         } else {
             $result = $this->db->query($sql);
@@ -170,6 +172,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         if (!$result) {
             return false;
         }
+
         return true;
     }
 
@@ -178,8 +181,8 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      * @param bool $id_as_key
      * @return array
      */
-    public function &getObjects($criteria = null, $id_as_key = false
-    ) {
+    public function &getObjects($criteria = null, $id_as_key = false)
+    {
         $ret   = array();
         $limit = $start = 0;
         $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe');
@@ -197,11 +200,12 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         }
         while ($myrow = $this->db->fetchArray($result)) {
             if (!$id_as_key) {
-                $ret[] = new myiframe($myrow);
+                $ret[] = new Myiframe($myrow);
             } else {
-                $ret[$myrow['frame_frameid']] = new myiframe($myrow);
+                $ret[$myrow['frame_frameid']] = new Myiframe($myrow);
             }
         }
+
         return $ret;
     }
 
@@ -209,8 +213,8 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      * @param null $criteria
      * @return int
      */
-    public function getCount($criteria = null
-    ) {
+    public function getCount($criteria = null)
+    {
         $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('myiframe');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' ' . $criteria->renderWhere();
@@ -220,6 +224,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
             return 0;
         }
         list($count) = $this->db->fetchRow($result);
+
         return $count;
     }
 
@@ -227,8 +232,8 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      * @param null $criteria
      * @return bool
      */
-    public function deleteAll($criteria = null
-    ) {
+    public function deleteAll($criteria = null)
+    {
         $sql = 'DELETE FROM ' . $this->db->prefix('myiframe');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' ' . $criteria->renderWhere();
@@ -236,14 +241,15 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         if (!$result = $this->db->query($sql)) {
             return false;
         }
+
         return true;
     }
 
     /**
      * @param $frame_id
      */
-    public function updatehits($frame_id
-    ) {
+    public function updatehits($frame_id)
+    {
         $sql = sprintf('UPDATE %s SET frame_hits = frame_hits+1 WHERE frame_frameid=%u', $this->db->prefix('myiframe'), (int)$frame_id);
         $this->db->queryF($sql);
     }
