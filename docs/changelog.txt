@@ -1,18 +1,49 @@
-Changelog
+<h5>1.66  [NOT RELEASED]</h5>
+<hr>
+- missing language constant (mamba)
+- fix typo (mamba)
+- updated footer (mamba)
+- Type unsafe comparison (mamba)
+- PhpDocs updates (mamba)
+- Type casting can be used (mamba)
+- __DIR__  (mamba)
+- Unnecessary parentheses (mamba)
+- Unnecessary double quotes (mamba)
+- fix deprecated functions (mamba)
+- php-cs-fixer (mamba)
+- updates (mamba)
 
-************
-v1.65
-************
+----
+Modified: .gitignore
+Modified: blocks/myiframe_iframe.php
+Modified: class/myiframe.php
+Modified: docs/readme.txt
+Modified: include/functions.php
+Modified: index.php
+Modified: language/english/admin.php
+Modified: language/english/blocks.php
+Modified: language/english/main.php
+Modified: language/english/modinfo.php
+Modified: language/russian/admin.php
+Modified: language/russian/blocks.php
+Modified: language/russian/main.php
+Modified: language/russian/modinfo.php
+Modified: xoops_version.php
+
+
+
+<h5>1.65 </h5>
+<hr>
 - Modified for XOOPS 2.5.8+ aerograf
 
-************
-v1.6
-************
+
+<h5>1.6  </h5>
+<hr>
 - Bugs corrections
 
-************
-v1.5
-************
+
+<h5>1.5  </h5>
+<hr>
 - The module is fully compatible with Xoops Cube Legacy
 - The module's index page now will write the meta description
 - Minor changes
