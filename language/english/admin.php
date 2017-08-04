@@ -40,3 +40,4 @@ define('_AM_MYIFRAME_AUTO', 'Auto');
 define('_AM_MYIFRAME_HITS', 'Hits');
 
 // New in version 1.4 *******************************************************************************************
+define('_AM_MYIFRAME_ERROR_MODIFY_DB', 'Error modifying DB');
