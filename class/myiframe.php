@@ -158,7 +158,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function delete(XoopsObject $objet, $force = false
     ) {
-        if (get_class($objet) !== 'objet') {
+        if (get_class($objet) !== 'myiframe') {
             return false;
         }
         $sql = sprintf('DELETE FROM %s WHERE frame_frameid = %u', $this->db->prefix('myiframe'), $objet->getVar('frame_frameid'));
