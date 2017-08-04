@@ -19,6 +19,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
  * @author       Instant Zero (http://www.instant-zero.com)
  * @copyright    Instant Zero (http://www.instant-zero.com)
  * @param string $option module option's name
+ * @param string $repmodule
+ * @return bool
  */
 function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
 {
@@ -35,7 +37,7 @@ function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
         }
     } else {
         $moduleHandler = xoops_getHandler('module');
-        $module         = $moduleHandler->getByDirname($repmodule);
+        $module        = $moduleHandler->getByDirname($repmodule);
         $configHandler = xoops_getHandler('config');
         if ($module) {
             $moduleConfig = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
@@ -54,6 +56,9 @@ function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
  * @package      Myiframe
  * @author       Instant Zero (http://www.instant-zero.com)
  * @copyright    Instant Zero (http://www.instant-zero.com)
+ * @param $fieldname
+ * @param $table
+ * @return bool
  */
 function myiframe_FieldExists($fieldname, $table)
 {

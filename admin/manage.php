@@ -27,10 +27,25 @@ if (!myiframe_FieldExists('frame_frameid', $xoopsDB->prefix('myiframe'))) {
     header('Location : ' . XOOPS_URL . '/modules/system/admin.php?fct=modulesadmin&op=update&module=myiframe');
 }
 
-$module_id      = $xoopsModule->getVar('mid');
-$op             = 'default';
+$module_id     = $xoopsModule->getVar('mid');
+$op            = 'default';
 $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
+/**
+ * @param $frameid
+ * @param $Action
+ * @param $FormTitle
+ * @param $longdesc
+ * @param $width
+ * @param $height
+ * @param $align
+ * @param $frameborder
+ * @param $marginwidth
+ * @param $marginheight
+ * @param $scrolling
+ * @param $url
+ * @param $LabelSubmitButton
+ */
 function AddEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, $align, $frameborder, $marginwidth, $marginheight, $scrolling, $url, $LabelSubmitButton)
 {
     include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
@@ -157,9 +172,10 @@ switch ($op) {
             $adminObject = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             echo '<h4>' . _AM_MYIFRAME_CONFIG . '</h4>';
-            xoops_confirm(array('op'      => 'delete',
-                                'frameid' => (int)$_GET['frameid'],
-                                'ok'      => 1
+            xoops_confirm(array(
+                              'op'      => 'delete',
+                              'frameid' => (int)$_GET['frameid'],
+                              'ok'      => 1
                           ), 'manage.php', _AM_MYIFRAME_RUSUREDEL);
             include_once __DIR__ . '/admin_footer.php';
         } else {

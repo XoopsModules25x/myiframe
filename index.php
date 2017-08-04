@@ -27,7 +27,7 @@ if (strlen(xoops_trim($suplparam)) > 0) {
 $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
 if (isset($_GET['iframeid'])) {
-    $tblalign = array(
+    $tblalign     = array(
         'top',
         'middle',
         'bottom',
@@ -39,7 +39,7 @@ if (isset($_GET['iframeid'])) {
         'no',
         'auto'
     );
-    $frameid = (int)$_GET['iframeid'];
+    $frameid      = (int)$_GET['iframeid'];
 
     $frame = $iframeHandler->get($frameid);
 

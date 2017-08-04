@@ -12,10 +12,17 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 
+/**
+ * Class myiframe
+ */
 class myiframe extends XoopsObject
 {
     public $db;
 
+    /**
+     * myiframe constructor.
+     * @param null $id
+     */
     public function __construct($id = null
     ) {
         $this->db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -43,6 +50,9 @@ class myiframe extends XoopsObject
         }
     }
 
+    /**
+     * @param $id
+     */
     public function load($id
     ) {
         $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe') . ' WHERE frame_frameid=' . (int)$id;
@@ -54,8 +64,15 @@ class myiframe extends XoopsObject
     }
 }
 
+/**
+ * Class MyiframeMyiframeHandler
+ */
 class MyiframeMyiframeHandler extends XoopsObjectHandler
 {
+    /**
+     * @param bool $isNew
+     * @return myiframe
+     */
     public function &create($isNew = true
     ) {
         $objet = new myiframe();
@@ -65,6 +82,10 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         return $objet;
     }
 
+    /**
+     * @param int $id
+     * @return myiframe|null
+     */
     public function &get($id
     ) {
         $ret = null;
@@ -81,6 +102,11 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         return $ret;
     }
 
+    /**
+     * @param XoopsObject $objet
+     * @param bool        $force
+     * @return bool
+     */
     public function insert(XoopsObject $objet, $force = false
     ) {
         if (get_class($objet) != 'myiframe') {
@@ -125,6 +151,11 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         return $frame_frameid;
     }
 
+    /**
+     * @param XoopsObject $objet
+     * @param bool        $force
+     * @return bool
+     */
     public function delete(XoopsObject $objet, $force = false
     ) {
         if (get_class($objet) != 'objet') {
@@ -142,6 +173,11 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         return true;
     }
 
+    /**
+     * @param null $criteria
+     * @param bool $id_as_key
+     * @return array
+     */
     public function &getObjects($criteria = null, $id_as_key = false
     ) {
         $ret   = array();
@@ -169,6 +205,10 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         return $ret;
     }
 
+    /**
+     * @param null $criteria
+     * @return int
+     */
     public function getCount($criteria = null
     ) {
         $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('myiframe');
@@ -183,6 +223,10 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         return $count;
     }
 
+    /**
+     * @param null $criteria
+     * @return bool
+     */
     public function deleteAll($criteria = null
     ) {
         $sql = 'DELETE FROM ' . $this->db->prefix('myiframe');
@@ -195,6 +239,9 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         return true;
     }
 
+    /**
+     * @param $frame_id
+     */
     public function updatehits($frame_id
     ) {
         $sql = sprintf('UPDATE %s SET frame_hits = frame_hits+1 WHERE frame_frameid=%u', $this->db->prefix('myiframe'), (int)$frame_id);

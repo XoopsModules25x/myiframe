@@ -8,24 +8,28 @@
 
 include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
+/**
+ * @param $options
+ * @return array
+ */
 function b_myiframe_iframe_show($options)
 {
-    $block          = array();
-    $tblalign       = array(
+    $block         = array();
+    $tblalign      = array(
         'top',
         'middle',
         'bottom',
         'left',
         'rigth'
     );
-    $tblscrolling   = array(
+    $tblscrolling  = array(
         'yes',
         'no',
         'auto'
     );
     $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
-    $frame          = null;
-    $frame          = $iframeHandler->get($options[0]);
+    $frame         = null;
+    $frame         = $iframeHandler->get($options[0]);
 
     if (is_object($frame)) {
         $block['longdesc']     = $frame->getVar('frame_description');
@@ -41,11 +45,15 @@ function b_myiframe_iframe_show($options)
     return $block;
 }
 
+/**
+ * @param $options
+ * @return string
+ */
 function b_myiframe_iframe_edit($options)
 {
     $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
-    $frarray        = array();
-    $critere        = new Criteria('1', '1', '=');
+    $frarray       = array();
+    $critere       = new Criteria('1', '1', '=');
     $critere->setSort('frame_description');
     $frarray = $iframeHandler->getObjects($critere);
 
@@ -61,6 +69,9 @@ function b_myiframe_iframe_edit($options)
     return $form;
 }
 
+/**
+ * @param $options
+ */
 function b_myiframe_iframe_onthefly($options)
 {
     $options = explode('|', $options);
