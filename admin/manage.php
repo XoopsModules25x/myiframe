@@ -6,7 +6,7 @@
  * ****************************************************************************
  */
 
-include '../../../include/cp_header.php';
+include __DIR__ . '/../../../include/cp_header.php';
 include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
 // Verify if the table is up to date
@@ -29,7 +29,7 @@ if (!myiframe_FieldExists('frame_frameid', $xoopsDB->prefix('myiframe'))) {
 
 $module_id      = $xoopsModule->getVar('mid');
 $op             = 'default';
-$iframe_handler = xoops_getmodulehandler('myiframe', 'myiframe');
+$iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
 function AddEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, $align, $frameborder, $marginwidth, $marginheight, $scrolling, $url, $LabelSubmitButton)
 {
@@ -74,7 +74,7 @@ function AddEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, 
     $button_tray->addElement($cancel_btn);
     $sform->addElement($button_tray);
     $sform->display();
-    include_once 'admin_footer.php';
+    include_once __DIR__ . '/admin_footer.php';
 }
 
 // ******************************************************************************************************************************************
@@ -99,13 +99,13 @@ switch ($op) {
                 echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . "</h4></a>";
                 echo _AM_MYIFRAME_ERROR_ADD_INDEX;
                 echo "</td></tr></table>";
-                include_once 'admin_footer.php';
+                include_once __DIR__ . '/admin_footer.php';
                 xoops_cp_footer();
                 exit();
             }
 
             $frameid = $_POST['frameid'];
-            $frame   = $iframe_handler->get($frameid);
+            $frame   = $iframeHandler->get($frameid);
             $frame->unsetNew();
             $frame->setVar('frame_description', $_POST['longdesc']);
             $frame->setVar('frame_width', $_POST['width']);
@@ -117,7 +117,7 @@ switch ($op) {
             $frame->setVar('frame_scrolling', $_POST['scrolling']);
             $frame->setVar('frame_url', $_POST['url']);
             $frame->setVar('frame_uid', $xoopsUser->getVar("uid"));
-            $res = $iframe_handler->insert($frame);
+            $res = $iframeHandler->insert($frame);
             if (!$res) {
                 redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_MODIFY_DB);
                 exit();
@@ -133,7 +133,7 @@ switch ($op) {
         $adminObject->displayNavigation(basename(__FILE__));
         if (isset($_GET['frameid'])) {
             $frameid = intval($_GET['frameid']);
-            $frame   = $iframe_handler->get($frameid);
+            $frame   = $iframeHandler->get($frameid);
             AddEditForm($frameid, 'verifybeforeedit', _AM_MYIFRAME_CONFIG, $frame->getVar('frame_description', 'e'), $frame->getVar('frame_width', 'e'), $frame->getVar('frame_height', 'e'), $frame->getVar('frame_align', 'e'),
                         $frame->getVar('frame_frameborder', 'e'), $frame->getVar('frame_marginwidth', 'e'), $frame->getVar('frame_marginheight', 'e'), $frame->getVar('frame_scrolling', 'e'), $frame->getVar('frame_url', 'e'), _AM_MYIFRAME_UPDATE);
         } else {
@@ -145,7 +145,7 @@ switch ($op) {
             echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . "</h4></a>";
             echo _AM_MYIFRAME_ERROR_ADD_INDEX;
             echo "</td></tr></table>\n";
-            include_once 'admin_footer.php';
+            include_once __DIR__ . '/admin_footer.php';
             xoops_cp_footer();
             exit();
         }
@@ -161,7 +161,7 @@ switch ($op) {
                                 'frameid' => intval($_GET['frameid']),
                                 'ok'      => 1
                           ), 'manage.php', _AM_MYIFRAME_RUSUREDEL);
-            include_once 'admin_footer.php';
+            include_once __DIR__ . '/admin_footer.php';
         } else {
             if (empty($_POST['frameid'])) {
                 redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX);
@@ -169,7 +169,7 @@ switch ($op) {
             }
             $frameid = intval($_POST['frameid']);
             $critere = new Criteria('frame_frameid', $frameid, '=');
-            $iframe_handler->deleteAll($critere);
+            $iframeHandler->deleteAll($critere);
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);
             exit();
         }
@@ -186,13 +186,13 @@ switch ($op) {
                 echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . "</h4></a>";
                 echo _AM_MYIFRAME_ERROR_ADD_INDEX;
                 echo "</td></tr></table>\n";
-                include_once 'admin_footer.php';
+                include_once __DIR__ . '/admin_footer.php';
                 xoops_cp_footer();
                 $adminObject = \Xmf\Module\Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
                 exit();
             }
-            $frame = $iframe_handler->create(true);
+            $frame = $iframeHandler->create(true);
             $frame->setVar('frame_description', $_POST['longdesc']);
             $frame->setVar('frame_width', $_POST['width']);
             $frame->setVar('frame_height', $_POST['height']);
@@ -204,7 +204,7 @@ switch ($op) {
             $frame->setVar('frame_url', $_POST['url']);
             $frame->setVar('frame_created', time());
             $frame->setVar('frame_uid', $xoopsUser->getVar("uid"));
-            $res = $iframe_handler->insert($frame);
+            $res = $iframeHandler->insert($frame);
             if (!$res) {
                 redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_ADD_INDEX);
                 exit();
@@ -231,7 +231,7 @@ switch ($op) {
              . _AM_MYIFRAME_ACTION . "</th></tr>\n";
         $critere = new Criteria('1', '1', '=');
         $critere->setSort('frame_description');
-        $frarray = $iframe_handler->getObjects($critere);
+        $frarray = $iframeHandler->getObjects($critere);
         $class   = 'even';
         $baseurl = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/manage.php';
         if (count($frarray) > 0) {
@@ -251,7 +251,7 @@ switch ($op) {
         echo "<tr class='" . $class . "'><td colspan='5' align='center'><form name='faddframe' method='post' action='manage.php'><input type='hidden' name='op' value='addframe'><input type='submit' name='submit' value='" . _AM_MYIFRAME_ADD
              . "'></td></tr>";
         echo "</table>";
-        include_once 'admin_footer.php';
+        include_once __DIR__ . '/admin_footer.php';
         break;
 }
 

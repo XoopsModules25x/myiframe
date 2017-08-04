@@ -10,7 +10,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     die("XOOPS root path not defined");
 }
 
-include_once XOOPS_ROOT_PATH . '/class/xoopsobject.php';
+include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 
 class myiframe extends XoopsObject
 {
@@ -18,7 +18,7 @@ class myiframe extends XoopsObject
 
     public function __construct($id = null
     ) {
-        $this->db =& Database::getInstance();
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar('frame_frameid', XOBJ_DTYPE_INT, null, false, 10);
         $this->initVar('frame_created', XOBJ_DTYPE_INT, null, false, 10);
         $this->initVar('frame_uid', XOBJ_DTYPE_INT, null, false, 10);

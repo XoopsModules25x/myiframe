@@ -6,9 +6,9 @@
  * ****************************************************************************
  */
 
-require_once '../../mainfile.php';
+require_once __DIR__ . '/../../mainfile.php';
 require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
-$xoopsOption['template_main'] = 'myiframe.tpl';
+$GLOBALS['xoopsOption']['template_main'] = 'myiframe.tpl';
 require_once(XOOPS_ROOT_PATH . '/header.php');
 
 $suplparam = '';
@@ -24,7 +24,7 @@ if (strlen(xoops_trim($suplparam)) > 0) {
     $suplparam = substr($suplparam, 0, strlen($suplparam) - 1);
 }
 
-$iframe_handler =& xoops_getmodulehandler('myiframe', 'myiframe');
+$iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
 if (isset($_GET['iframeid'])) {
     $tblalign = array(
@@ -41,10 +41,10 @@ if (isset($_GET['iframeid'])) {
     );
     $frameid = intval($_GET['iframeid']);
 
-    $frame = $iframe_handler->get($frameid);
+    $frame = $iframeHandler->get($frameid);
 
     if (is_object($frame)) {
-        $iframe_handler->updatehits($frameid);
+        $iframeHandler->updatehits($frameid);
         $xoopsTpl->assign('frameok', true);
         $xoopsTpl->assign('longdesc', $frame->getVar('frame_description'));
         $xoopsTpl->assign('width', $frame->getVar('frame_width'));
@@ -71,7 +71,7 @@ if (isset($_GET['iframeid'])) {
         $frarray = array();
         $critere = new Criteria('1', '1', '=');
         $critere->setSort('frame_description');
-        $frarray = $iframe_handler->getObjects($critere);
+        $frarray = $iframeHandler->getObjects($critere);
         if (count($frarray) > 0) {
             foreach ($frarray as $frame) {
                 if (xoops_trim($frame->getVar('frame_description') == '')) {

@@ -23,9 +23,9 @@ function b_myiframe_iframe_show($options)
         'no',
         'auto'
     );
-    $iframe_handler =& xoops_getmodulehandler('myiframe', 'myiframe');
+    $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
     $frame          = null;
-    $frame          = $iframe_handler->get($options[0]);
+    $frame          = $iframeHandler->get($options[0]);
 
     if (is_object($frame)) {
         $block['longdesc']     = $frame->getVar('frame_description');
@@ -43,11 +43,11 @@ function b_myiframe_iframe_show($options)
 
 function b_myiframe_iframe_edit($options)
 {
-    $iframe_handler =& xoops_getmodulehandler('myiframe', 'myiframe');
+    $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
     $frarray        = array();
     $critere        = new Criteria('1', '1', '=');
     $critere->setSort('frame_description');
-    $frarray = $iframe_handler->getObjects($critere);
+    $frarray = $iframeHandler->getObjects($critere);
 
     $form = "" . _MB_MYIFRAME_IFRAME . "&nbsp;<select name='options[0]'>";
     foreach ($frarray as $oneframe) {
