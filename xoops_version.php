@@ -11,7 +11,6 @@ use Xmf\Request;
 if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS root path not defined');
 }
-
 $modversion = array(
     'version'             => 1.66,
     'module_status'       => 'Beta 1',
@@ -45,7 +44,6 @@ $modversion = array(
     // Menu
     'hasMain'             => 1
 );
-
 // Templates
 $modversion['templates'] = array(
     array(
@@ -64,7 +62,6 @@ $modversion['blocks'][] = array(
     'options'     => '0',
     'template'    => 'myiframe_block_show.tpl'
 );
-
 global $xoopsDB, $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig;
 
 if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['dirname'] && $xoopsModule->getVar('isactive')) {
@@ -83,7 +80,6 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
         }
     }
 }
-
 // Options
 $modversion['config'][] = [
     'name'        => 'showinmenu',
@@ -103,9 +99,7 @@ $modversion['config'][] = [
 ];
 // Search
 $modversion['hasSearch'] = 0;
-
 // Comments
 $modversion['hasComments'] = 0;
-
 // Notification
 $modversion['hasNotification'] = 0;
