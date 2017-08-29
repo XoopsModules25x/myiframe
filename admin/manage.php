@@ -29,6 +29,7 @@ if (!myiframe_FieldExists('frame_frameid', $xoopsDB->prefix('myiframe'))) {
 
 $module_id     = $xoopsModule->getVar('mid');
 $op            = 'default';
+/** @var MyiframeMyiframeHandler $iframeHandler */
 $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
 /**
@@ -242,14 +243,14 @@ switch ($op) {
              . _AM_MYIFRAME_ACTION . "</th></tr>\n";
         $critere = new Criteria('1', '1', '=');
         $critere->setSort('frame_description');
-        $frarray = $iframeHandler->getObjects($critere);
+    $frarray     = $iframeHandler->getObjects($critere);
         $class   = 'even';
         $baseurl = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/manage.php';
         if (count($frarray) > 0) {
             foreach ($frarray as $frame) {
                 $action_edit   = "<a href='" . $baseurl . '?op=edit&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/edit.png' alt='" . _AM_MYIFRAME_EDIT . "'></a>";
                 $action_delete = "<a href='" . $baseurl . '?op=delete&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/delete.png' alt='" . _AM_MYIFRAME_DELETE . "'></a>";
-                if (xoops_trim($frame->getVar('frame_description') === '')) {
+                if (xoops_trim($frame->getVar('frame_description')) === '') {
                     $liendesc = $frame->getVar('frame_url');
                 } else {
                     $liendesc = "<a href='" . XOOPS_URL . '/modules/myiframe/index.php?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . '</a>';
