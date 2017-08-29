@@ -135,10 +135,8 @@ switch ($op) {
             $res = $iframeHandler->insert($frame);
             if (!$res) {
                 redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_MODIFY_DB);
-                exit();
             }
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);
-            exit();
         }
         break;
 
@@ -181,13 +179,11 @@ switch ($op) {
         } else {
             if (empty($_POST['frameid'])) {
                 redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX);
-                exit();
             }
             $frameid = (int)$_POST['frameid'];
             $critere = new Criteria('frame_frameid', $frameid, '=');
             $iframeHandler->deleteAll($critere);
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);
-            exit();
         }
         break;
 
@@ -223,7 +219,6 @@ switch ($op) {
             $res = $iframeHandler->insert($frame);
             if (!$res) {
                 redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_ADD_INDEX);
-                exit();
             }
             redirect_header('manage.php', 1, _AM_MYIFRAME_ADDED_OK);
         }
