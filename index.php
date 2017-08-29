@@ -14,7 +14,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 $suplparam = '';
 if (isset($_GET)) {
     foreach ($_GET as $k => $v) {
-        if (trim(strtoupper($k)) !== 'IFRAMEID') {
+        if (strtoupper(trim($k)) !== 'IFRAMEID') {
             $suplparam .= $k . '=' . $v . '&';
         }
     }
