@@ -19,23 +19,23 @@ $pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 $moduleHelper->loadLanguage('modinfo');
 $moduleHelper->loadLanguage('admin');
 
-$adminmenu = array(
-    array(
+$adminmenu = [
+    [
         'title' => _MI_MYIFRAME_NAME,
         'link'  => 'admin/index.php',
         'icon'  => $pathIcon32 . '/home.png'
-    ),
+    ],
 
-    array(
+    [
         'title' => _MI_MYIFRAME_ADMENU1,
         'link'  => 'admin/manage.php',
         'icon'  => $pathIcon32 . '/manage.png'
-    ),
+    ],
 
     // Category
-    array(
+    [
         'title' => _MI_MYIFRAME_ADMENU2,
         'link'  => 'admin/about.php',
         'icon'  => $pathIcon32 . '/about.png'
-    ),
-);
+    ],
+];

@@ -27,18 +27,18 @@ if (strlen(xoops_trim($suplparam)) > 0) {
 $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
 if (isset($_GET['iframeid'])) {
-    $tblalign     = array(
+    $tblalign     = [
         'top',
         'middle',
         'bottom',
         'left',
         'rigth'
-    );
-    $tblscrolling = array(
+    ];
+    $tblscrolling = [
         'yes',
         'no',
         'auto'
-    );
+    ];
     $frameid      = (int)$_GET['iframeid'];
 
     $frame = $iframeHandler->get($frameid);
@@ -68,7 +68,7 @@ if (isset($_GET['iframeid'])) {
 } else {
     if (myiframe_getmoduleoption('showlist')) {
         $baseurl = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/index.php';
-        $frarray = array();
+        $frarray = [];
         $critere = new Criteria('1', '1', '=');
         $critere->setSort('frame_description');
         $frarray = $iframeHandler->getObjects($critere);

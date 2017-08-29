@@ -171,11 +171,11 @@ switch ($op) {
             $adminObject = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             echo '<h4>' . _AM_MYIFRAME_CONFIG . '</h4>';
-            xoops_confirm(array(
+            xoops_confirm([
                               'op'      => 'delete',
                               'frameid' => (int)$_GET['frameid'],
                               'ok'      => 1
-                          ), 'manage.php', _AM_MYIFRAME_RUSUREDEL);
+                          ], 'manage.php', _AM_MYIFRAME_RUSUREDEL);
             include_once __DIR__ . '/admin_footer.php';
         } else {
             if (empty($_POST['frameid'])) {

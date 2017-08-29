@@ -183,7 +183,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function &getObjects($criteria = null, $id_as_key = false)
     {
-        $ret   = array();
+        $ret   = [];
         $limit = $start = 0;
         $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {

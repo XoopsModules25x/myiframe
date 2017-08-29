@@ -14,19 +14,19 @@ include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
  */
 function b_myiframe_iframe_show($options)
 {
-    $block         = array();
-    $tblalign      = array(
+    $block         = [];
+    $tblalign      = [
         'top',
         'middle',
         'bottom',
         'left',
         'rigth'
-    );
-    $tblscrolling  = array(
+    ];
+    $tblscrolling  = [
         'yes',
         'no',
         'auto'
-    );
+    ];
     $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
     $frame         = null;
     $frame         = $iframeHandler->get($options[0]);
@@ -52,7 +52,7 @@ function b_myiframe_iframe_show($options)
 function b_myiframe_iframe_edit($options)
 {
     $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
-    $frarray       = array();
+    $frarray       = [];
     $critere       = new Criteria('1', '1', '=');
     $critere->setSort('frame_description');
     $frarray = $iframeHandler->getObjects($critere);

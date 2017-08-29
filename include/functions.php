@@ -25,7 +25,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
 {
     global $xoopsModuleConfig, $xoopsModule;
-    static $tbloptions = array();
+    static $tbloptions = [];
     if (is_array($tbloptions) && array_key_exists($option, $tbloptions)) {
         return $tbloptions[$option];
     }
