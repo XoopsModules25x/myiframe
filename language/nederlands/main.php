@@ -6,4 +6,4 @@
  * ****************************************************************************
  */
 
-define("_MYIFRAME_FRAME_ERROR", "Fout, het geselecteerde Iframe bestaat niet!");
+define('_MYIFRAME_FRAME_ERROR', 'Fout, het geselecteerde Iframe bestaat niet!');
