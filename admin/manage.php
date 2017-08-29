@@ -27,8 +27,8 @@ if (!myiframe_FieldExists('frame_frameid', $xoopsDB->prefix('myiframe'))) {
     header('Location : ' . XOOPS_URL . '/modules/system/admin.php?fct=modulesadmin&op=update&module=myiframe');
 }
 
-$module_id     = $xoopsModule->getVar('mid');
-$op            = 'default';
+$module_id = $xoopsModule->getVar('mid');
+$op        = 'default';
 /** @var MyiframeMyiframeHandler $iframeHandler */
 $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
@@ -148,8 +148,8 @@ switch ($op) {
         if (isset($_GET['frameid'])) {
             $frameid = (int)$_GET['frameid'];
             $frame   = $iframeHandler->get($frameid);
-            addEditForm($frameid, 'verifybeforeedit', _AM_MYIFRAME_CONFIG, $frame->getVar('frame_description', 'e'), $frame->getVar('frame_width', 'e'), $frame->getVar('frame_height', 'e'), $frame->getVar('frame_align', 'e'),
-                        $frame->getVar('frame_frameborder', 'e'), $frame->getVar('frame_marginwidth', 'e'), $frame->getVar('frame_marginheight', 'e'), $frame->getVar('frame_scrolling', 'e'), $frame->getVar('frame_url', 'e'), _AM_MYIFRAME_UPDATE);
+            addEditForm($frameid, 'verifybeforeedit', _AM_MYIFRAME_CONFIG, $frame->getVar('frame_description', 'e'), $frame->getVar('frame_width', 'e'), $frame->getVar('frame_height', 'e'), $frame->getVar('frame_align', 'e'), $frame->getVar('frame_frameborder', 'e'),
+                        $frame->getVar('frame_marginwidth', 'e'), $frame->getVar('frame_marginheight', 'e'), $frame->getVar('frame_scrolling', 'e'), $frame->getVar('frame_url', 'e'), _AM_MYIFRAME_UPDATE);
         } else {
             xoops_cp_header();
             $adminObject = \Xmf\Module\Admin::getInstance();
@@ -239,11 +239,10 @@ switch ($op) {
         $adminObject->displayNavigation(basename(__FILE__));
         echo '<h4>' . _AM_MYIFRAME_CONFIG . "</h4><br />\n";
         echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
-        echo "<tr><th align='center'>" . _AM_MYIFRAME_ID . "</th><th align='center'>" . _AM_MYIFRAME_DESC . "</th><th align='center'>" . _AM_MYIFRAME_CREATED . "</th><th align='center'>" . _AM_MYIFRAME_HITS . "</th><th align='center'>"
-             . _AM_MYIFRAME_ACTION . "</th></tr>\n";
+        echo "<tr><th align='center'>" . _AM_MYIFRAME_ID . "</th><th align='center'>" . _AM_MYIFRAME_DESC . "</th><th align='center'>" . _AM_MYIFRAME_CREATED . "</th><th align='center'>" . _AM_MYIFRAME_HITS . "</th><th align='center'>" . _AM_MYIFRAME_ACTION . "</th></tr>\n";
         $critere = new Criteria('1', '1', '=');
         $critere->setSort('frame_description');
-    $frarray     = $iframeHandler->getObjects($critere);
+        $frarray = $iframeHandler->getObjects($critere);
         $class   = 'even';
         $baseurl = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/manage.php';
         if (count($frarray) > 0) {
@@ -255,13 +254,25 @@ switch ($op) {
                 } else {
                     $liendesc = "<a href='" . XOOPS_URL . '/modules/myiframe/index.php?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . '</a>';
                 }
-                echo "<tr class='" . $class . "'><td align='center'>" . $frame->getVar('frame_frameid') . "</td><td align='center'>" . $liendesc . "</td><td align='center'>" . formatTimestamp($frame->getVar('frame_created'))
-                     . "</td><td align='center'>" . $frame->getVar('frame_hits') . "</td><td align='center'>" . $action_edit . '&nbsp;-&nbsp;' . $action_delete . "</td></tr>\n";
+                echo "<tr class='"
+                     . $class
+                     . "'><td align='center'>"
+                     . $frame->getVar('frame_frameid')
+                     . "</td><td align='center'>"
+                     . $liendesc
+                     . "</td><td align='center'>"
+                     . formatTimestamp($frame->getVar('frame_created'))
+                     . "</td><td align='center'>"
+                     . $frame->getVar('frame_hits')
+                     . "</td><td align='center'>"
+                     . $action_edit
+                     . '&nbsp;-&nbsp;'
+                     . $action_delete
+                     . "</td></tr>\n";
                 $class = ($class === 'even') ? 'odd' : 'even';
             }
         }
-        echo "<tr class='" . $class . "'><td colspan='5' align='center'><form name='faddframe' method='post' action='manage.php'><input type='hidden' name='op' value='addframe'><input type='submit' name='submit' value='" . _AM_MYIFRAME_ADD
-             . "'></td></tr>";
+        echo "<tr class='" . $class . "'><td colspan='5' align='center'><form name='faddframe' method='post' action='manage.php'><input type='hidden' name='op' value='addframe'><input type='submit' name='submit' value='" . _AM_MYIFRAME_ADD . "'></td></tr>";
         echo '</table>';
         include_once __DIR__ . '/admin_footer.php';
         break;
