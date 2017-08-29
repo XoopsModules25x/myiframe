@@ -147,7 +147,7 @@ switch ($op) {
         if (isset($_GET['frameid'])) {
             $frameid = (int)$_GET['frameid'];
             $frame   = $iframeHandler->get($frameid);
-            AddEditForm($frameid, 'verifybeforeedit', _AM_MYIFRAME_CONFIG, $frame->getVar('frame_description', 'e'), $frame->getVar('frame_width', 'e'), $frame->getVar('frame_height', 'e'), $frame->getVar('frame_align', 'e'),
+            addEditForm($frameid, 'verifybeforeedit', _AM_MYIFRAME_CONFIG, $frame->getVar('frame_description', 'e'), $frame->getVar('frame_width', 'e'), $frame->getVar('frame_height', 'e'), $frame->getVar('frame_align', 'e'),
                         $frame->getVar('frame_frameborder', 'e'), $frame->getVar('frame_marginwidth', 'e'), $frame->getVar('frame_marginheight', 'e'), $frame->getVar('frame_scrolling', 'e'), $frame->getVar('frame_url', 'e'), _AM_MYIFRAME_UPDATE);
         } else {
             xoops_cp_header();
@@ -228,7 +228,7 @@ switch ($op) {
         xoops_cp_header();
         $adminObject = \Xmf\Module\Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
-        AddEditForm(0, 'verifytoadd', _AM_MYIFRAME_CONFIG, '', '100%', '', '', '0', '0', '0', 1, '', _AM_MYIFRAME_ADDBUTTON);
+        addEditForm(0, 'verifytoadd', _AM_MYIFRAME_CONFIG, '', '100%', '', '', '0', '0', '0', 1, '', _AM_MYIFRAME_ADDBUTTON);
         break;
 
     case 'default':
