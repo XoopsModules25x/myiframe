@@ -14,6 +14,7 @@
     left: 0;
     width: <{$width}>;
     height: <{$height}>;
+}
 </style>
   <{if $frameok}>
 	<div class="fluidMedia">
