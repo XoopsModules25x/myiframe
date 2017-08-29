@@ -24,6 +24,7 @@ if (strlen(xoops_trim($suplparam)) > 0) {
     $suplparam = substr($suplparam, 0, strlen($suplparam) - 1);
 }
 
+/** @var \MyiframeMyiframeHandler $iframeHandler */
 $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
 if (isset($_GET['iframeid'])) {
@@ -74,7 +75,8 @@ if (isset($_GET['iframeid'])) {
         $frarray = $iframeHandler->getObjects($critere);
         if (count($frarray) > 0) {
             foreach ($frarray as $frame) {
-                if (xoops_trim($frame->getVar('frame_description') === '')) {
+                /** @var Myiframe $frame */
+                if (xoops_trim($frame->getVar('frame_description')) === '') {
                     $liendesc = $frame->getVar('frame_url');
                 } else {
                     $liendesc = "<a href='" . $baseurl . '?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . '</a>';

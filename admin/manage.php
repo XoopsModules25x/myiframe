@@ -246,7 +246,9 @@ switch ($op) {
         $class   = 'even';
         $baseurl = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/manage.php';
         if (count($frarray) > 0) {
+            /** @var Myiframe $frame */
             foreach ($frarray as $frame) {
+
                 $action_edit   = "<a href='" . $baseurl . '?op=edit&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/edit.png' alt='" . _AM_MYIFRAME_EDIT . "'></a>";
                 $action_delete = "<a href='" . $baseurl . '?op=delete&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/delete.png' alt='" . _AM_MYIFRAME_DELETE . "'></a>";
                 if (xoops_trim($frame->getVar('frame_description')) === '') {

@@ -51,6 +51,7 @@ function b_myiframe_iframe_show($options)
  */
 function b_myiframe_iframe_edit($options)
 {
+    /** @var \MyiframeMyiframeHandler $iframeHandler */
     $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
     $frarray       = [];
     $critere       = new Criteria('1', '1', '=');
@@ -58,6 +59,7 @@ function b_myiframe_iframe_edit($options)
     $frarray = $iframeHandler->getObjects($critere);
 
     $form = '' . _MB_MYIFRAME_IFRAME . "&nbsp;<select name='options[0]'>";
+    /** @var Myiframe $oneframe */
     foreach ($frarray as $oneframe) {
         $form .= "<option value='" . $oneframe->getVar('frame_frameid') . "'";
         if ($options[0] == $oneframe->getVar('frame_frameid')) {

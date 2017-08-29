@@ -17,6 +17,7 @@ include_once XOOPS_ROOT_PATH . '/kernel/object.php';
  */
 class Myiframe extends XoopsObject
 {
+    /** @var \XoopsMySQLDatabase $db */
     public $db;
 
     /**
@@ -177,11 +178,11 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
     }
 
     /**
-     * @param null $criteria
+     * @param null|\CriteriaCompo $criteria
      * @param bool $id_as_key
      * @return array
      */
-    public function &getObjects($criteria = null, $id_as_key = false)
+    public function &getObjects(CriteriaCompo $criteria = null, $id_as_key = false)
     {
         $ret   = [];
         $limit = $start = 0;
@@ -210,10 +211,10 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
     }
 
     /**
-     * @param null $criteria
+     * @param null|CriteriaCompo $criteria
      * @return int
      */
-    public function getCount($criteria = null)
+    public function getCount(CriteriaCompo $criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('myiframe');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
@@ -229,10 +230,10 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
     }
 
     /**
-     * @param null $criteria
+     * @param null|CriteriaCompo $criteria
      * @return bool
      */
-    public function deleteAll($criteria = null)
+    public function deleteAll(CriteriaCompo $criteria = null)
     {
         $sql = 'DELETE FROM ' . $this->db->prefix('myiframe');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
