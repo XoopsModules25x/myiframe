@@ -5,13 +5,10 @@
  * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
-
 use Xmf\Request;
-
 if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS root path not defined');
 }
-
 $modversion = array(
     'version'             => 1.66,
     'module_status'       => 'Beta 1',
@@ -23,8 +20,8 @@ $modversion = array(
     'help'                => '',
     'license'             => 'GPL see LICENSE',
     'official'            => 0,
-    'image'               => 'assets/images/myiframe.png',
-    'dirname'             => 'myiframe',
+    'image'               => 'assets/images/logoModule.png',
+    'dirname'             => basename(__DIR__),
     'min_php'             => '5.5',
     'min_db'              => array('mysql' => '5.5'),
     'min_xoops'           => '2.5.8+',
@@ -45,7 +42,6 @@ $modversion = array(
     // Menu
     'hasMain'             => 1
 );
-
 // Templates
 $modversion['templates'] = array(
     array(
@@ -53,7 +49,6 @@ $modversion['templates'] = array(
         'description' => 'Default template'
     ),
 );
-
 //Blocks
 $modversion['blocks'][] = array(
     'file'        => 'myiframe_iframe.php',
@@ -64,9 +59,7 @@ $modversion['blocks'][] = array(
     'options'     => '0',
     'template'    => 'myiframe_block_show.tpl'
 );
-
 global $xoopsDB, $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig;
-
 if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['dirname'] && $xoopsModule->getVar('isactive')) {
     $i = 0;
     include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
@@ -83,7 +76,6 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
         }
     }
 }
-
 // Options
 $modversion['config'][] = [
     'name'        => 'showinmenu',
@@ -103,9 +95,7 @@ $modversion['config'][] = [
 ];
 // Search
 $modversion['hasSearch'] = 0;
-
 // Comments
 $modversion['hasComments'] = 0;
-
 // Notification
 $modversion['hasNotification'] = 0;
