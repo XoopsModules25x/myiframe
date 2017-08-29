@@ -1,4 +1,9 @@
-<h5>1.66  [NOT RELEASED]</h5>
+<h5>1.66 RC-1 [NOT RELEASED]</h5>
+<hr>
+- renamed module logo to "logoModule.png" (mamba)
+- changed dirname in xoops_version.php to "basename(__DIR__)" (mamba)
+
+<h5>1.66 Beta 1 [2017-08-04]</h5>
 <hr>
 - missing language constant (mamba)
 - fix typo (mamba)
@@ -12,24 +17,6 @@
 - fix deprecated functions (mamba)
 - php-cs-fixer (mamba)
 - updates (mamba)
-
-----
-Modified: .gitignore
-Modified: blocks/myiframe_iframe.php
-Modified: class/myiframe.php
-Modified: docs/readme.txt
-Modified: include/functions.php
-Modified: index.php
-Modified: language/english/admin.php
-Modified: language/english/blocks.php
-Modified: language/english/main.php
-Modified: language/english/modinfo.php
-Modified: language/russian/admin.php
-Modified: language/russian/blocks.php
-Modified: language/russian/main.php
-Modified: language/russian/modinfo.php
-Modified: xoops_version.php
-
 
 
 <h5>1.65 </h5>
