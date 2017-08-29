@@ -6,5 +6,4 @@
  * ****************************************************************************
  */
 
-define("_MB_MYIFRAME_IFRAME","Elija quй iframe se mostrarб");
-?>
+define("_MB_MYIFRAME_IFRAME", "Elija quй iframe se mostrarб");

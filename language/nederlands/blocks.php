@@ -6,5 +6,4 @@
  * ****************************************************************************
  */
 
-define("_MB_MYIFRAME_IFRAME","Selecteer de iframe dat getoond moet worden");
-?>
+define("_MB_MYIFRAME_IFRAME", "Selecteer de iframe dat getoond moet worden");
