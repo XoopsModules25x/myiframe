@@ -5,7 +5,9 @@
  * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
+
 use Xmf\Request;
+
 if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS root path not defined');
 }
@@ -49,6 +51,10 @@ $modversion['templates'] = array(
         'description' => 'Default template'
     ),
 );
+<<<<<<< master
+=======
+
+>>>>>>> master
 //Blocks
 $modversion['blocks'][] = array(
     'file'        => 'myiframe_iframe.php',
@@ -60,6 +66,10 @@ $modversion['blocks'][] = array(
     'template'    => 'myiframe_block_show.tpl'
 );
 global $xoopsDB, $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig;
+<<<<<<< master
+=======
+
+>>>>>>> master
 if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['dirname'] && $xoopsModule->getVar('isactive')) {
     $i = 0;
     include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
