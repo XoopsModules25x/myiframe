@@ -6,24 +6,25 @@
  * ****************************************************************************
  */
 
-include __DIR__ . '/../../../include/cp_header.php';
+//include __DIR__ . '/../../../include/cp_header.php';
+require_once __DIR__ . '/admin_header.php';
 include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
 // Verify if the table is up to date
-if (!myiframe_FieldExists('frame_frameid', $xoopsDB->prefix('myiframe'))) {
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . ' CHANGE `frameid` `frame_frameid` INT( 8 ) NOT NULL AUTO_INCREMENT');
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `created` `frame_created` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `uid` `frame_uid` MEDIUMINT( 8 ) UNSIGNED NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . ' CHANGE `longdesc` `frame_description` VARCHAR( 255 ) NOT NULL');
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . ' CHANGE `width` `frame_width` VARCHAR( 15 ) NOT NULL');
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . ' CHANGE `height` `frame_height` VARCHAR( 15 ) NOT NULL');
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `align` `frame_align` SMALLINT( 2 ) NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `frameborder` `frame_frameborder` SMALLINT( 3 ) NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `marginwidth` `frame_marginwidth` SMALLINT( 3 ) NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `marginheight` `frame_marginheight` SMALLINT( 3 ) NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `scrolling` `frame_scrolling` SMALLINT( 1 ) NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . " CHANGE `hits` `frame_hits` INT( 8 ) UNSIGNED NOT NULL DEFAULT '0'");
-    $result = $xoopsDB->queryF('ALTER TABLE ' . $xoopsDB->prefix('myiframe') . ' CHANGE `url` `frame_url` VARCHAR( 255 ) NOT NULL');
+if (!myiframe_FieldExists('frame_frameid', $GLOBALS['xoopsDB']->prefix('myiframe'))) {
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . ' CHANGE `frameid` `frame_frameid` INT( 8 ) NOT NULL AUTO_INCREMENT');
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `created` `frame_created` INT( 10 ) UNSIGNED NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `uid` `frame_uid` MEDIUMINT( 8 ) UNSIGNED NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . ' CHANGE `longdesc` `frame_description` VARCHAR( 255 ) NOT NULL');
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . ' CHANGE `width` `frame_width` VARCHAR( 15 ) NOT NULL');
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . ' CHANGE `height` `frame_height` VARCHAR( 15 ) NOT NULL');
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `align` `frame_align` SMALLINT( 2 ) NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `frameborder` `frame_frameborder` SMALLINT( 3 ) NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `marginwidth` `frame_marginwidth` SMALLINT( 3 ) NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `marginheight` `frame_marginheight` SMALLINT( 3 ) NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `scrolling` `frame_scrolling` SMALLINT( 1 ) NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . " CHANGE `hits` `frame_hits` INT( 8 ) UNSIGNED NOT NULL DEFAULT '0'");
+    $result = $GLOBALS['xoopsDB']->queryF('ALTER TABLE ' . $GLOBALS['xoopsDB']->prefix('myiframe') . ' CHANGE `url` `frame_url` VARCHAR( 255 ) NOT NULL');
     header('Location : ' . XOOPS_URL . '/modules/system/admin.php?fct=modulesadmin&op=update&module=myiframe');
 }
 
@@ -148,8 +149,21 @@ switch ($op) {
         if (isset($_GET['frameid'])) {
             $frameid = (int)$_GET['frameid'];
             $frame   = $iframeHandler->get($frameid);
-            addEditForm($frameid, 'verifybeforeedit', _AM_MYIFRAME_CONFIG, $frame->getVar('frame_description', 'e'), $frame->getVar('frame_width', 'e'), $frame->getVar('frame_height', 'e'), $frame->getVar('frame_align', 'e'), $frame->getVar('frame_frameborder', 'e'),
-                        $frame->getVar('frame_marginwidth', 'e'), $frame->getVar('frame_marginheight', 'e'), $frame->getVar('frame_scrolling', 'e'), $frame->getVar('frame_url', 'e'), _AM_MYIFRAME_UPDATE);
+            addEditForm(
+                $frameid,
+                'verifybeforeedit',
+                _AM_MYIFRAME_CONFIG,
+                $frame->getVar('frame_description', 'e'),
+                $frame->getVar('frame_width', 'e'),
+                $frame->getVar('frame_height', 'e'),
+                $frame->getVar('frame_align', 'e'),
+                $frame->getVar('frame_frameborder', 'e'),
+                        $frame->getVar('frame_marginwidth', 'e'),
+                $frame->getVar('frame_marginheight', 'e'),
+                $frame->getVar('frame_scrolling', 'e'),
+                $frame->getVar('frame_url', 'e'),
+                _AM_MYIFRAME_UPDATE
+            );
         } else {
             xoops_cp_header();
             $adminObject = \Xmf\Module\Admin::getInstance();
@@ -248,7 +262,6 @@ switch ($op) {
         if (count($frarray) > 0) {
             /** @var Myiframe $frame */
             foreach ($frarray as $frame) {
-
                 $action_edit   = "<a href='" . $baseurl . '?op=edit&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/edit.png' alt='" . _AM_MYIFRAME_EDIT . "'></a>";
                 $action_delete = "<a href='" . $baseurl . '?op=delete&frameid=' . $frame->getVar('frame_frameid') . "'><img src='../assets/images/delete.png' alt='" . _AM_MYIFRAME_DELETE . "'></a>";
                 if (xoops_trim($frame->getVar('frame_description')) === '') {

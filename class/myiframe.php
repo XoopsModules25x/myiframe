@@ -17,7 +17,7 @@ include_once XOOPS_ROOT_PATH . '/kernel/object.php';
  */
 class Myiframe extends XoopsObject
 {
-    /** @var \XoopsMySQLDatabase $db */
+//    /** @var \XoopsMySQLDatabase $db */
     public $db;
 
     /**
@@ -112,7 +112,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function insert(XoopsObject $object, $force = false)
     {
-        if (get_class($object) !== 'myiframe') {
+        if (get_class($object) !== 'Myiframe') {
             return false;
         }
         if (!$object->isDirty()) {
@@ -129,14 +129,41 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         }
 
         if ($object->isNew()) {
-            $format = 'INSERT INTO %s (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
-            $sql    = sprintf($format, $this->db->prefix('myiframe'), $frame_created, $frame_uid, $this->db->quoteString($frame_description), $this->db->quoteString($frame_width), $this->db->quoteString($frame_height), $frame_align, $frame_frameborder, $frame_marginwidth, $frame_marginheight,
-                              $frame_scrolling, $frame_hits, $this->db->quoteString($frame_url));
+            $format = 'INSERT INTO "%s" (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
+            $sql    = sprintf(
+                $format,
+                $this->db->prefix('myiframe'),
+                $frame_created,
+                $frame_uid,
+                $this->db->quoteString($frame_description),
+                $this->db->quoteString($frame_width),
+                $this->db->quoteString($frame_height),
+                $frame_align,
+                $frame_frameborder,
+                $frame_marginwidth,
+                $frame_marginheight,
+                              $frame_scrolling,
+                $frame_hits,
+                $this->db->quoteString($frame_url)
+            );
             $force  = true;
         } else {
             $format = 'UPDATE "%s" SET frame_description="%s", frame_width="%s", frame_height="%s", frame_align="%d", frame_frameborder="%d", frame_marginwidth="%d", frame_marginheight="%d", frame_scrolling="%d", frame_hits="%u", frame_url="%s" WHERE frame_frameid="%u"';
-            $sql    = sprintf($format, $this->db->prefix('myiframe'), $this->db->quoteString($frame_description), $this->db->quoteString($frame_width), $this->db->quoteString($frame_height), $frame_align, $frame_frameborder, $frame_marginwidth, $frame_marginheight, $frame_scrolling, $frame_hits,
-                              $this->db->quoteString($frame_url), $frame_frameid);
+            $sql    = sprintf(
+                $format,
+                $this->db->prefix('myiframe'),
+                $this->db->quoteString($frame_description),
+                $this->db->quoteString($frame_width),
+                $this->db->quoteString($frame_height),
+                $frame_align,
+                $frame_frameborder,
+                $frame_marginwidth,
+                $frame_marginheight,
+                $frame_scrolling,
+                $frame_hits,
+                              $this->db->quoteString($frame_url),
+                $frame_frameid
+            );
         }
         if (false !== $force) {
             $result = $this->db->queryF($sql);
@@ -178,11 +205,11 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
     }
 
     /**
-     * @param null|\CriteriaCompo $criteria
+     * @param null|\Criteria  $criteria
      * @param bool $id_as_key
      * @return array
      */
-    public function &getObjects(CriteriaCompo $criteria = null, $id_as_key = false)
+    public function &getObjects(Criteria $criteria = null, $id_as_key = false)
     {
         $ret   = [];
         $limit = $start = 0;

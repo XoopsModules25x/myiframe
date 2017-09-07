@@ -64,9 +64,8 @@ function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
  */
 function myiframe_FieldExists($fieldname, $table)
 {
-    global $xoopsDB;
-    $result = $xoopsDB->queryF("SHOW COLUMNS FROM	$table LIKE '$fieldname'");
-    return ($xoopsDB->getRowsNum($result) > 0);
+    $result = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM	$table LIKE '$fieldname'");
+    return ($GLOBALS['xoopsDB']->getRowsNum($result) > 0);
 }
 
 /**
