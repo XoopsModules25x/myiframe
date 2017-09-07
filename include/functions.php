@@ -25,7 +25,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
 {
     global $xoopsModuleConfig, $xoopsModule;
-    static $tbloptions = array();
+    static $tbloptions = [];
     if (is_array($tbloptions) && array_key_exists($option, $tbloptions)) {
         return $tbloptions[$option];
     }
@@ -36,8 +36,10 @@ function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
             $retval = $xoopsModuleConfig[$option];
         }
     } else {
+        /** @var \XoopsModuleHandler $moduleHandler */
         $moduleHandler = xoops_getHandler('module');
         $module        = $moduleHandler->getByDirname($repmodule);
+        /** @var \XoopsConfigHandler $configHandler */
         $configHandler = xoops_getHandler('config');
         if ($module) {
             $moduleConfig = $configHandler->getConfigsByCat(0, $module->getVar('mid'));
@@ -62,9 +64,8 @@ function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
  */
 function myiframe_FieldExists($fieldname, $table)
 {
-    global $xoopsDB;
-    $result = $xoopsDB->queryF("SHOW COLUMNS FROM	$table LIKE '$fieldname'");
-    return ($xoopsDB->getRowsNum($result) > 0);
+    $result = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM	$table LIKE '$fieldname'");
+    return ($GLOBALS['xoopsDB']->getRowsNum($result) > 0);
 }
 
 /**

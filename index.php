@@ -14,7 +14,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 $suplparam = '';
 if (isset($_GET)) {
     foreach ($_GET as $k => $v) {
-        if (trim(strtoupper($k)) !== 'IFRAMEID') {
+        if (strtoupper(trim($k)) !== 'IFRAMEID') {
             $suplparam .= $k . '=' . $v . '&';
         }
     }
@@ -24,21 +24,22 @@ if (strlen(xoops_trim($suplparam)) > 0) {
     $suplparam = substr($suplparam, 0, strlen($suplparam) - 1);
 }
 
+/** @var \MyiframeMyiframeHandler $iframeHandler */
 $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
 
 if (isset($_GET['iframeid'])) {
-    $tblalign     = array(
+    $tblalign     = [
         'top',
         'middle',
         'bottom',
         'left',
         'rigth'
-    );
-    $tblscrolling = array(
+    ];
+    $tblscrolling = [
         'yes',
         'no',
         'auto'
-    );
+    ];
     $frameid      = (int)$_GET['iframeid'];
 
     $frame = $iframeHandler->get($frameid);
@@ -68,13 +69,14 @@ if (isset($_GET['iframeid'])) {
 } else {
     if (myiframe_getmoduleoption('showlist')) {
         $baseurl = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/index.php';
-        $frarray = array();
+        $frarray = [];
         $critere = new Criteria('1', '1', '=');
         $critere->setSort('frame_description');
         $frarray = $iframeHandler->getObjects($critere);
         if (count($frarray) > 0) {
             foreach ($frarray as $frame) {
-                if (xoops_trim($frame->getVar('frame_description') === '')) {
+                /** @var Myiframe $frame */
+                if (xoops_trim($frame->getVar('frame_description')) === '') {
                     $liendesc = $frame->getVar('frame_url');
                 } else {
                     $liendesc = "<a href='" . $baseurl . '?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . '</a>';
