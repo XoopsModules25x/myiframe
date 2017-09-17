@@ -22,4 +22,15 @@ define('_MI_MYIFRAME_OPT0_DSC', 'With this option, you can have links towards yo
 define('_MI_MYIFRAME_OPT1', 'Displays iframes list ?');
 define('_MI_MYIFRAME_OPT1_DSC', "when the module's index page is called without parameters,<br /> the page displays a list of the available iframes");
 
-define('_MI_MYIFAME_BNAME1', 'Show an iframe');
+define('_MI_MYIFRAME_BNAME1', 'Show an iframe');
+
+//Help
+define('_MI_MYIFRAME_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_MYIFRAME_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
+define('_MI_MYIFRAME_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_MYIFRAME_OVERVIEW', 'Overview');
+
+//help multi-page
+define('_MI_MYIFRAME_DISCLAIMER', 'Disclaimer');
+define('_MI_MYIFRAME_LICENSE', 'License');
+define('_MI_MYIFRAME_SUPPORT', 'Support');
