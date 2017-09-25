@@ -72,7 +72,7 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
         $sql    = 'SELECT * FROM ' . $GLOBALS['xoopsDB']->prefix('myiframe') . ' ORDER BY frame_description';
         $result = $GLOBALS['xoopsDB']->query($sql);
         while (false !== ($myrow = $GLOBALS['xoopsDB']->fetchArray($result))) {
-            if (xoops_trim($myrow['frame_description']) !== '') {
+            if ('' !== xoops_trim($myrow['frame_description'])) {
                 $modversion['sub'][$i]['name'] = $myts->htmlSpecialChars($myrow['frame_description']);
                 $modversion['sub'][$i]['url']  = 'index.php?iframeid=' . (int)$myrow['frame_frameid'];
                 $i++;

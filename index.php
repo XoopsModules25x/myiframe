@@ -14,7 +14,7 @@ require_once XOOPS_ROOT_PATH . '/header.php';
 $suplparam = '';
 if (isset($_GET)) {
     foreach ($_GET as $k => $v) {
-        if (strtoupper(trim($k)) !== 'IFRAMEID') {
+        if ('IFRAMEID' !== strtoupper(trim($k))) {
             $suplparam .= $k . '=' . $v . '&';
         }
     }
@@ -55,7 +55,7 @@ if (isset($_GET['iframeid'])) {
         $xoopsTpl->assign('marginwidth', $frame->getVar('frame_marginwidth'));
         $xoopsTpl->assign('marginheight', $frame->getVar('frame_marginheight'));
         $xoopsTpl->assign('scrolling', $tblscrolling[$frame->getVar('frame_scrolling') - 1]);
-        if (xoops_trim($suplparam) !== '') {
+        if ('' !== xoops_trim($suplparam)) {
             $xoopsTpl->assign('url', $frame->getVar('frame_url') . '?' . $suplparam);
         } else {
             $xoopsTpl->assign('url', $frame->getVar('frame_url'));
@@ -76,7 +76,7 @@ if (isset($_GET['iframeid'])) {
         if (count($frarray) > 0) {
             foreach ($frarray as $frame) {
                 /** @var Myiframe $frame */
-                if (xoops_trim($frame->getVar('frame_description')) === '') {
+                if ('' === xoops_trim($frame->getVar('frame_description'))) {
                     $liendesc = $frame->getVar('frame_url');
                 } else {
                     $liendesc = "<a href='" . $baseurl . '?iframeid=' . $frame->getVar('frame_frameid') . "'>" . $frame->getVar('frame_description') . '</a>';

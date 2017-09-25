@@ -96,7 +96,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
             return $ret;
         }
         $numrows = $this->db->getRowsNum($result);
-        if ($numrows == 1) {
+        if (1 == $numrows) {
             $object = new Myiframe();
             $object->assignVars($this->db->fetchArray($result));
             return $object;
@@ -112,7 +112,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function insert(XoopsObject $object, $force = false)
     {
-        if (get_class($object) !== 'Myiframe') {
+        if ('Myiframe' !== get_class($object)) {
             return false;
         }
         if (!$object->isDirty()) {
@@ -188,7 +188,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function delete(XoopsObject $object, $force = false)
     {
-        if (get_class($object) !== 'myiframe') {
+        if ('myiframe' !== get_class($object)) {
             return false;
         }
         $sql = sprintf('DELETE FROM "%s" WHERE frame_frameid = "%u"', $this->db->prefix('myiframe'), $object->getVar('frame_frameid'));
@@ -216,7 +216,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe');
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             $sql .= ' ' . $criteria->renderWhere();
-            if ($criteria->getSort() !== '') {
+            if ('' !== $criteria->getSort()) {
                 $sql .= ' ORDER BY ' . $criteria->getSort() . ' ' . $criteria->getOrder();
             }
             $limit = $criteria->getLimit();
