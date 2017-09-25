@@ -19,7 +19,7 @@ $modversion = [
     'description'         => _MI_MYIFRAME_DESC,
     'credits'             => '',
     'author'              => 'Instant Zero - http://xoops.instant-zero.com',
-    'help'                => '',
+    'help'                => 'page=help',
     'license'             => 'GPL see LICENSE',
     'official'            => 0,
     'image'               => 'assets/images/logoModule.png',
@@ -44,6 +44,13 @@ $modversion = [
     // Menu
     'hasMain'             => 1
 ];
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = [
+    ['name' => _MI_MYIFRAME_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_MYIFRAME_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_MYIFRAME_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_MYIFRAME_SUPPORT, 'link' => 'page=support'],
+];
 // Templates
 $modversion['templates'] = [
     [
@@ -55,7 +62,7 @@ $modversion['templates'] = [
 //Blocks
 $modversion['blocks'][] = [
     'file'        => 'myiframe_iframe.php',
-    'name'        => _MI_MYIFAME_BNAME1,
+    'name'        => _MI_MYIFRAME_BNAME1,
     'description' => 'Shows an iframe in a block',
     'show_func'   => 'b_myiframe_iframe_show',
     'edit_func'   => 'b_myiframe_iframe_edit',
