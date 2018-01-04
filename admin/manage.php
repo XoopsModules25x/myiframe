@@ -251,7 +251,7 @@ switch ($op) {
         xoops_cp_header();
         $adminObject = \Xmf\Module\Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
-        echo '<h4>' . _AM_MYIFRAME_CONFIG . "</h4><br />\n";
+        echo '<h4>' . _AM_MYIFRAME_CONFIG . "</h4><br>\n";
         echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
         echo "<tr><th align='center'>" . _AM_MYIFRAME_ID . "</th><th align='center'>" . _AM_MYIFRAME_DESC . "</th><th align='center'>" . _AM_MYIFRAME_CREATED . "</th><th align='center'>" . _AM_MYIFRAME_HITS . "</th><th align='center'>" . _AM_MYIFRAME_ACTION . "</th></tr>\n";
         $critere = new Criteria('1', '1', '=');

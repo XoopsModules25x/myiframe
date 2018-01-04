@@ -5,19 +5,15 @@
  * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
  * ****************************************************************************
  */
-if (!isset($moduleDirName)) {
-    $moduleDirName = basename(dirname(__DIR__));
-}
 
-if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
-} else {
-    $moduleHelper = Xmf\Module\Helper::getHelper('system');
-}
-$adminObject   = \Xmf\Module\Admin::getInstance();
-$pathIcon32    = \Xmf\Module\Admin::menuIconPath('');
-$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
-$moduleHelper->loadLanguage('modinfo');
-$moduleHelper->loadLanguage('admin');
+use XoopsModules\Myiframe;
+
+require_once __DIR__ . '/../class/Helper.php';
+//require_once __DIR__ . '/../include/common.php';
+$helper = Myiframe\Helper::getInstance();
+
+$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 $adminmenu = [
     [

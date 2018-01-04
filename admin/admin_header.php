@@ -12,4 +12,4 @@ if ($xoopsUser) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);
 }
 
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();

@@ -6,9 +6,7 @@
  * ****************************************************************************
  */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS root path not defined');
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined.');
 
 include_once XOOPS_ROOT_PATH . '/kernel/object.php';
 
@@ -214,7 +212,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         $ret   = [];
         $limit = $start = 0;
         $sql   = 'SELECT * FROM ' . $this->db->prefix('myiframe');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' ' . $criteria->renderWhere();
             if ('' !== $criteria->getSort()) {
                 $sql .= ' ORDER BY ' . $criteria->getSort() . ' ' . $criteria->getOrder();
@@ -244,7 +242,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
     public function getCount(CriteriaCompo $criteria = null)
     {
         $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('myiframe');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' ' . $criteria->renderWhere();
         }
         $result = $this->db->query($sql);
@@ -263,7 +261,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
     public function deleteAll(CriteriaCompo $criteria = null)
     {
         $sql = 'DELETE FROM ' . $this->db->prefix('myiframe');
-        if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
+        if (isset($criteria) && is_subclass_of($criteria, 'CriteriaElement')) {
             $sql .= ' ' . $criteria->renderWhere();
         }
         if (!$result = $this->db->query($sql)) {
