@@ -6,7 +6,7 @@
  * ****************************************************************************
  */
 
-include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
+require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
 /**
  * @param $options
@@ -54,7 +54,7 @@ function b_myiframe_iframe_edit($options)
     /** @var \MyiframeMyiframeHandler $iframeHandler */
     $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
     $frarray       = [];
-    $critere       = new Criteria('1', '1', '=');
+    $critere       = new \Criteria('1', '1', '=');
     $critere->setSort('frame_description');
     $frarray = $iframeHandler->getObjects($critere);
 
@@ -79,7 +79,7 @@ function b_myiframe_iframe_onthefly($options)
     $options = explode('|', $options);
     $block   = &b_myiframe_iframe_show($options);
 
-    $tpl = new XoopsTpl();
+    $tpl = new \XoopsTpl();
     $tpl->assign('block', $block);
     $tpl->display('db:myiframe_block_show.tpl');
 }

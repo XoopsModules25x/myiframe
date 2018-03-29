@@ -70,7 +70,7 @@ if (isset($_GET['iframeid'])) {
     if (myiframe_getmoduleoption('showlist')) {
         $baseurl = XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/index.php';
         $frarray = [];
-        $critere = new Criteria('1', '1', '=');
+        $critere = new \Criteria('1', '1', '=');
         $critere->setSort('frame_description');
         $frarray = $iframeHandler->getObjects($critere);
         if (count($frarray) > 0) {

@@ -6,9 +6,9 @@
  * ****************************************************************************
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined.');
+defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined.');
 
-include_once XOOPS_ROOT_PATH . '/kernel/object.php';
+require_once XOOPS_ROOT_PATH . '/kernel/object.php';
 
 /**
  * Class Myiframe
@@ -24,7 +24,7 @@ class Myiframe extends XoopsObject
      */
     public function __construct($id = null)
     {
-        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
+        $this->db = \XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar('frame_frameid', XOBJ_DTYPE_INT, null, false, 10);
         $this->initVar('frame_created', XOBJ_DTYPE_INT, null, false, 10);
         $this->initVar('frame_uid', XOBJ_DTYPE_INT, null, false, 10);
@@ -108,7 +108,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      * @param bool        $force
      * @return bool
      */
-    public function insert(XoopsObject $object, $force = false)
+    public function insert(\XoopsObject $object, $force = false)
     {
         if ('Myiframe' !== get_class($object)) {
             return false;
@@ -127,7 +127,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         }
 
         if ($object->isNew()) {
-            $format = 'INSERT INTO "%s" (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
+            $format = 'INSERT INTO %s (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
             $sql    = sprintf(
                 $format,
                 $this->db->prefix('myiframe'),
@@ -146,7 +146,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
             );
             $force  = true;
         } else {
-            $format = 'UPDATE "%s" SET frame_description="%s", frame_width="%s", frame_height="%s", frame_align="%d", frame_frameborder="%d", frame_marginwidth="%d", frame_marginheight="%d", frame_scrolling="%d", frame_hits="%u", frame_url="%s" WHERE frame_frameid="%u"';
+            $format = 'UPDATE %s SET frame_description=%s, frame_width=%s, frame_height=%s, frame_align=%d, frame_frameborder=%d, frame_marginwidth=%d, frame_marginheight=%d, frame_scrolling=%d, frame_hits=%u, frame_url=%s WHERE frame_frameid=%u';
             $sql    = sprintf(
                 $format,
                 $this->db->prefix('myiframe'),
@@ -184,12 +184,12 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      * @param bool        $force
      * @return bool
      */
-    public function delete(XoopsObject $object, $force = false)
+    public function delete(\XoopsObject $object, $force = false)
     {
         if ('myiframe' !== get_class($object)) {
             return false;
         }
-        $sql = sprintf('DELETE FROM "%s" WHERE frame_frameid = "%u"', $this->db->prefix('myiframe'), $object->getVar('frame_frameid'));
+        $sql = sprintf('DELETE FROM %s WHERE frame_frameid = %u', $this->db->prefix('myiframe'), $object->getVar('frame_frameid'));
         if (false !== $force) {
             $result = $this->db->queryF($sql);
         } else {

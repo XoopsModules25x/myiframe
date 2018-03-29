@@ -8,7 +8,7 @@
 
 //include __DIR__ . '/../../../include/cp_header.php';
 require_once __DIR__ . '/admin_header.php';
-include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
+require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
 // Verify if the table is up to date
 if (!myiframe_FieldExists('frame_frameid', $GLOBALS['xoopsDB']->prefix('myiframe'))) {
@@ -50,15 +50,15 @@ $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
  */
 function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, $align, $frameborder, $marginwidth, $marginheight, $scrolling, $url, $LabelSubmitButton)
 {
-    include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+    require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     global $xoopsModule;
 
-    $sform = new XoopsThemeForm($FormTitle, 'indexform', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/manage.php');
-    $sform->addElement(new XoopsFormText(_AM_MYIFRAME_DESC, 'longdesc', 50, 255, $longdesc), false);
-    $sform->addElement(new XoopsFormText(_AM_MYIFRAME_WIDTH, 'width', 10, 15, $width), false);
-    $sform->addElement(new XoopsFormText(_AM_MYIFRAME_HEIGHT, 'height', 10, 15, $height), false);
+    $sform = new \XoopsThemeForm($FormTitle, 'indexform', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/manage.php');
+    $sform->addElement(new \XoopsFormText(_AM_MYIFRAME_DESC, 'longdesc', 50, 255, $longdesc), false);
+    $sform->addElement(new \XoopsFormText(_AM_MYIFRAME_WIDTH, 'width', 10, 15, $width), false);
+    $sform->addElement(new \XoopsFormText(_AM_MYIFRAME_HEIGHT, 'height', 10, 15, $height), false);
 
-    $selalign = new XoopsFormSelect(_AM_MYIFRAME_ALIGN, 'align', $align);
+    $selalign = new \XoopsFormSelect(_AM_MYIFRAME_ALIGN, 'align', $align);
     $selalign->addOption(1, _AM_MYIFRAME_ALIGN_TOP);
     $selalign->addOption(2, _AM_MYIFRAME_ALIGN_MIDDLE);
     $selalign->addOption(3, _AM_MYIFRAME_ALIGN_BOTTOM);
@@ -67,31 +67,31 @@ function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, 
     $selalign->setValue($align);
     $sform->addElement($selalign);
 
-    $sform->addElement(new XoopsFormText(_AM_MYIFRAME_FRAMEBORDER, 'frameborder', 3, 3, $frameborder), false);
-    $sform->addElement(new XoopsFormText(_AM_MYIFRAME_MARGINWIDTH, 'marginwidth', 3, 3, $marginwidth), false);
-    $sform->addElement(new XoopsFormText(_AM_MYIFRAME_MARGINHEIGHT, 'marginheight', 3, 3, $marginheight), false);
+    $sform->addElement(new \XoopsFormText(_AM_MYIFRAME_FRAMEBORDER, 'frameborder', 3, 3, $frameborder), false);
+    $sform->addElement(new \XoopsFormText(_AM_MYIFRAME_MARGINWIDTH, 'marginwidth', 3, 3, $marginwidth), false);
+    $sform->addElement(new \XoopsFormText(_AM_MYIFRAME_MARGINHEIGHT, 'marginheight', 3, 3, $marginheight), false);
 
-    $selscroll = new XoopsFormSelect(_AM_MYIFRAME_SCROLLING, 'scrolling', $scrolling);
+    $selscroll = new \XoopsFormSelect(_AM_MYIFRAME_SCROLLING, 'scrolling', $scrolling);
     $selscroll->addOption(1, _YES);
     $selscroll->addOption(2, _NO);
     $selscroll->addOption(3, _AM_MYIFRAME_AUTO);
     $selscroll->setValue($scrolling);
     $sform->addElement($selscroll);
 
-    $sform->addElement(new XoopsFormText(_AM_MYIFRAME_URL, 'url', 50, 255, $url), true);
-    $sform->addElement(new XoopsFormHidden('op', $Action), false);
+    $sform->addElement(new \XoopsFormText(_AM_MYIFRAME_URL, 'url', 50, 255, $url), true);
+    $sform->addElement(new \XoopsFormHidden('op', $Action), false);
     if (!empty($frameid)) {
-        $sform->addElement(new XoopsFormHidden('frameid', $frameid), false);
+        $sform->addElement(new \XoopsFormHidden('frameid', $frameid), false);
     }
 
-    $button_tray = new XoopsFormElementTray('', '');
-    $submit_btn  = new XoopsFormButton('', 'submit', $LabelSubmitButton, 'submit');
+    $button_tray = new \XoopsFormElementTray('', '');
+    $submit_btn  = new \XoopsFormButton('', 'submit', $LabelSubmitButton, 'submit');
     $button_tray->addElement($submit_btn);
-    $cancel_btn = new XoopsFormButton('', 'reset', _AM_MYIFRAME_RESETBUTTON, 'reset');
+    $cancel_btn = new \XoopsFormButton('', 'reset', _AM_MYIFRAME_RESETBUTTON, 'reset');
     $button_tray->addElement($cancel_btn);
     $sform->addElement($button_tray);
     $sform->display();
-    include_once __DIR__ . '/admin_footer.php';
+    require_once __DIR__ . '/admin_footer.php';
 }
 
 // ******************************************************************************************************************************************
@@ -116,7 +116,7 @@ switch ($op) {
                 echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
                 echo _AM_MYIFRAME_ERROR_ADD_INDEX;
                 echo '</td></tr></table>';
-                include_once __DIR__ . '/admin_footer.php';
+                require_once __DIR__ . '/admin_footer.php';
                 xoops_cp_footer();
                 exit();
             }
@@ -173,7 +173,7 @@ switch ($op) {
             echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
             echo _AM_MYIFRAME_ERROR_ADD_INDEX;
             echo "</td></tr></table>\n";
-            include_once __DIR__ . '/admin_footer.php';
+            require_once __DIR__ . '/admin_footer.php';
             xoops_cp_footer();
             exit();
         }
@@ -190,13 +190,13 @@ switch ($op) {
                               'frameid' => (int)$_GET['frameid'],
                               'ok'      => 1
                           ], 'manage.php', _AM_MYIFRAME_RUSUREDEL);
-            include_once __DIR__ . '/admin_footer.php';
+            require_once __DIR__ . '/admin_footer.php';
         } else {
             if (empty($_POST['frameid'])) {
                 redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX);
             }
             $frameid = (int)$_POST['frameid'];
-            $critere = new Criteria('frame_frameid', $frameid, '=');
+            $critere = new \Criteria('frame_frameid', $frameid, '=');
             $iframeHandler->deleteAll($critere);
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);
         }
@@ -213,7 +213,7 @@ switch ($op) {
                 echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
                 echo _AM_MYIFRAME_ERROR_ADD_INDEX;
                 echo "</td></tr></table>\n";
-                include_once __DIR__ . '/admin_footer.php';
+                require_once __DIR__ . '/admin_footer.php';
                 xoops_cp_footer();
                 $adminObject = \Xmf\Module\Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
@@ -254,7 +254,7 @@ switch ($op) {
         echo '<h4>' . _AM_MYIFRAME_CONFIG . "</h4><br>\n";
         echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
         echo "<tr><th align='center'>" . _AM_MYIFRAME_ID . "</th><th align='center'>" . _AM_MYIFRAME_DESC . "</th><th align='center'>" . _AM_MYIFRAME_CREATED . "</th><th align='center'>" . _AM_MYIFRAME_HITS . "</th><th align='center'>" . _AM_MYIFRAME_ACTION . "</th></tr>\n";
-        $critere = new Criteria('1', '1', '=');
+        $critere = new \Criteria('1', '1', '=');
         $critere->setSort('frame_description');
         $frarray = $iframeHandler->getObjects($critere);
         $class   = 'even';
@@ -289,7 +289,7 @@ switch ($op) {
         }
         echo "<tr class='" . $class . "'><td colspan='5' align='center'><form name='faddframe' method='post' action='manage.php'><input type='hidden' name='op' value='addframe'><input type='submit' name='submit' value='" . _AM_MYIFRAME_ADD . "'></td></tr>";
         echo '</table>';
-        include_once __DIR__ . '/admin_footer.php';
+        require_once __DIR__ . '/admin_footer.php';
         break;
 }
 

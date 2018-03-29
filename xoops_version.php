@@ -8,7 +8,7 @@
 
 use Xmf\Request;
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined.');
+defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined.');
 
 include __DIR__ . '/preloads/autoloader.php';
 
@@ -74,7 +74,7 @@ global $xoopsUser, $xoopsConfig, $xoopsModule, $xoopsModuleConfig;
 
 if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['dirname'] && $xoopsModule->getVar('isactive')) {
     $i = 0;
-    include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
+    require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
     $myts = \MyTextSanitizer::getInstance();
     if (myiframe_getmoduleoption('showinmenu')) {
         $sql    = 'SELECT * FROM ' . $GLOBALS['xoopsDB']->prefix('myiframe') . ' ORDER BY frame_description';
