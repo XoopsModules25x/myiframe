@@ -110,7 +110,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function insert(\XoopsObject $object, $force = false)
     {
-        if ('Myiframe' !== get_class($object)) {
+        if (!$object instanceof \Myiframe) {
             return false;
         }
         if (!$object->isDirty()) {
@@ -186,10 +186,10 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
      */
     public function delete(\XoopsObject $object, $force = false)
     {
-        if ('myiframe' !== get_class($object)) {
+        if (!$object instanceof \myiframe) {
             return false;
         }
-        $sql = sprintf('DELETE FROM %s WHERE frame_frameid = %u', $this->db->prefix('myiframe'), $object->getVar('frame_frameid'));
+        $sql = sprintf('DELETE FROM `%s` WHERE frame_frameid = %u', $this->db->prefix('myiframe'), $object->getVar('frame_frameid'));
         if (false !== $force) {
             $result = $this->db->queryF($sql);
         } else {

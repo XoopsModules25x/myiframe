@@ -77,7 +77,7 @@ function myiframe_FieldExists($fieldname, $table)
  * @param string $page_title       Page's Title
  * @param string $meta_description Page's meta description
  * @param string $meta_keywords    Page's meta keywords
- * @return none
+ * @return void
  */
 function myiframe_set_metas($page_title = '', $meta_description = '', $meta_keywords = '')
 {

@@ -21,7 +21,7 @@ if (isset($_GET)) {
 }
 
 if (strlen(xoops_trim($suplparam)) > 0) {
-    $suplparam = substr($suplparam, 0, strlen($suplparam) - 1);
+    $suplparam = substr($suplparam, 0, -1);
 }
 
 /** @var \MyiframeMyiframeHandler $iframeHandler */
