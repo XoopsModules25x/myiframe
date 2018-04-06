@@ -98,11 +98,7 @@ function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, 
 // **** Main ********************************************************************************************************************************
 // ******************************************************************************************************************************************
 
-if (isset($_POST['op'])) {
-    $op = $_POST['op'];
-} elseif (isset($_GET['op'])) {
-    $op = $_GET['op'];
-}
+$op    = \Xmf\Request::getCmd('op', '');
 
 switch ($op) {
     case 'verifybeforeedit':
@@ -147,7 +143,7 @@ switch ($op) {
         $adminObject = \Xmf\Module\Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         if (isset($_GET['frameid'])) {
-            $frameid = (int)$_GET['frameid'];
+            $frameid = \Xmf\Request::getInt('frameid', 0, 'GET');
             $frame   = $iframeHandler->get($frameid);
             addEditForm(
                 $frameid,
@@ -187,7 +183,7 @@ switch ($op) {
             echo '<h4>' . _AM_MYIFRAME_CONFIG . '</h4>';
             xoops_confirm([
                               'op'      => 'delete',
-                              'frameid' => (int)$_GET['frameid'],
+                              'frameid' => \Xmf\Request::getInt('frameid', 0, 'GET'),
                               'ok'      => 1
                           ], 'manage.php', _AM_MYIFRAME_RUSUREDEL);
             require_once __DIR__ . '/admin_footer.php';
@@ -195,7 +191,7 @@ switch ($op) {
             if (empty($_POST['frameid'])) {
                 redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX);
             }
-            $frameid = (int)$_POST['frameid'];
+            $frameid = \Xmf\Request::getInt('frameid', 0, 'POST');
             $critere = new \Criteria('frame_frameid', $frameid, '=');
             $iframeHandler->deleteAll($critere);
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);

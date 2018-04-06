@@ -40,7 +40,7 @@ if (isset($_GET['iframeid'])) {
         'no',
         'auto'
     ];
-    $frameid      = (int)$_GET['iframeid'];
+    $frameid      = \Xmf\Request::getInt('iframeid', 0, 'GET');
 
     $frame = $iframeHandler->get($frameid);
 
