@@ -127,7 +127,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
         }
 
         if ($object->isNew()) {
-            $format = 'INSERT INTO %s (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
+            $format = 'INSERT INTO `%s` (frame_created, frame_uid, frame_description, frame_width, frame_height, frame_align, frame_frameborder, frame_marginwidth, frame_marginheight, frame_scrolling, frame_hits, frame_url) VALUES (%u, %u, %s, %s, %s, %d, %d, %d, %d, %d, %u, %s)';
             $sql    = sprintf(
                 $format,
                 $this->db->prefix('myiframe'),
@@ -146,7 +146,7 @@ class MyiframeMyiframeHandler extends XoopsObjectHandler
             );
             $force  = true;
         } else {
-            $format = 'UPDATE %s SET frame_description=%s, frame_width=%s, frame_height=%s, frame_align=%d, frame_frameborder=%d, frame_marginwidth=%d, frame_marginheight=%d, frame_scrolling=%d, frame_hits=%u, frame_url=%s WHERE frame_frameid=%u';
+            $format = 'UPDATE `%s` SET frame_description=%s, frame_width=%s, frame_height=%s, frame_align=%d, frame_frameborder=%d, frame_marginwidth=%d, frame_marginheight=%d, frame_scrolling=%d, frame_hits=%u, frame_url=%s WHERE frame_frameid=%u';
             $sql    = sprintf(
                 $format,
                 $this->db->prefix('myiframe'),
