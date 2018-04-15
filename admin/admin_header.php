@@ -1,8 +1,8 @@
 <?php
-include __DIR__ . '/../../../mainfile.php';
+include  dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 include XOOPS_ROOT_PATH . '/include/cp_functions.php';
 require_once XOOPS_ROOT_PATH . '/kernel/module.php';
-include __DIR__ . '/../../../include/cp_header.php';
+include  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 if ($xoopsUser) {
     $xoopsModule = XoopsModule::getByDirname('myiframe');
     if (!$xoopsUser->isAdmin($xoopsModule->mid())) {

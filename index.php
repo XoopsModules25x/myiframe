@@ -6,7 +6,7 @@
  * ****************************************************************************
  */
 
-require_once __DIR__ . '/../../mainfile.php';
+require_once  dirname(dirname(__DIR__)) . '/mainfile.php';
 require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 $GLOBALS['xoopsOption']['template_main'] = 'myiframe.tpl';
 require_once XOOPS_ROOT_PATH . '/header.php';

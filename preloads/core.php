@@ -20,7 +20,7 @@ defined('XOOPS_ROOT_PATH') || die('Restricted access');
 /**
  * Class MyiframeCorePreload
  */
-class MyiframeCorePreload extends XoopsPreloadItem
+class MyiframeCorePreload extends \XoopsPreloadItem
 {
     // to add PSR-4 autoloader
     /**

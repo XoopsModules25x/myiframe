@@ -1,4 +1,5 @@
-<?php
+<?php namespace XoopsModules\Myiframe;
+
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
@@ -13,7 +14,7 @@ require_once XOOPS_ROOT_PATH . '/kernel/object.php';
 /**
  * Class Myiframe
  */
-class Myiframe extends XoopsObject
+class Myiframe extends \XoopsObject
 {
 //    /** @var \XoopsMySQLDatabase $db */
     public $db;
@@ -66,7 +67,7 @@ class Myiframe extends XoopsObject
 /**
  * Class MyiframeMyiframeHandler
  */
-class MyiframeMyiframeHandler extends XoopsObjectHandler
+class MyiframeMyiframeHandler extends \XoopsObjectHandler
 {
     /**
      * @param bool $isNew

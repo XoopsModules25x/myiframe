@@ -6,7 +6,7 @@
  * ****************************************************************************
  */
 
-//include __DIR__ . '/../../../include/cp_header.php';
+//include  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 require_once __DIR__ . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
