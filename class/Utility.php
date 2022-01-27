@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Myiframe;
+<?php declare(strict_types=1);
+
+namespace XoopsModules\Myiframe;
 
 /*
  Utility Class Definition
@@ -12,31 +14,21 @@
  WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
 /**
  * Module:  xSitemap
  *
- * @package      \module\xsitemap\class
- * @license      http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @license      https://www.fsf.org/copyleft/gpl.html GNU public license
  * @copyright    https://xoops.org 2001-2017 &copy; XOOPS Project
- * @author       ZySpec <owners@zyspec.com>
+ * @author       ZySpec <zyspec@yahoo.com>
  * @author       Mamba <mambax7@gmail.com>
  * @since        File available since version 1.54
  */
 
-use Xmf\Request;
-use XoopsModules\Myiframe;
-use XoopsModules\Myiframe\Common;
-
 /**
  * Class Utility
  */
-class Utility
+class Utility extends Common\SysUtility
 {
-    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
-
-    use Common\ServerStats; // getServerStats Trait
-
-    use Common\FilesManagement; // Files Management Trait
-
     //--------------- Custom module methods -----------------------------
 }

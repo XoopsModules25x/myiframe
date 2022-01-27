@@ -1,24 +1,23 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (https://www.instant-zero.com)
  * ****************************************************************************
  */
-
-defined('XOOPS_ROOT_PATH') || die('XOOPS root path not defined.');
+defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined.');
 
 /**
  * Returns a module's option
  *
  * Return's a module's option (for the myiframe module)
  *
- * @package      Myiframe
- * @author       Instant Zero (http://www.instant-zero.com)
- * @copyright    Instant Zero (http://www.instant-zero.com)
  * @param string $option module option's name
  * @param string $repmodule
  * @return bool
+ * @author       Instant Zero (https://www.instant-zero.com)
+ * @copyright    Instant Zero (https://www.instant-zero.com)
  */
 function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
 {
@@ -47,22 +46,23 @@ function myiframe_getmoduleoption($option, $repmodule = 'myiframe')
         }
     }
     $tbloptions[$option] = $retval;
+
     return $retval;
 }
 
 /**
  * Verify that a field exists inside a mysql table
  *
- * @package      Myiframe
- * @author       Instant Zero (http://www.instant-zero.com)
- * @copyright    Instant Zero (http://www.instant-zero.com)
  * @param $fieldname
  * @param $table
  * @return bool
+ * @author       Instant Zero (https://www.instant-zero.com)
+ * @copyright    Instant Zero (https://www.instant-zero.com)
  */
 function myiframe_FieldExists($fieldname, $table)
 {
-    $result = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM	$table LIKE '$fieldname'");
+    $result = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM    $table LIKE '$fieldname'");
+
     return ($GLOBALS['xoopsDB']->getRowsNum($result) > 0);
 }
 
@@ -70,16 +70,13 @@ function myiframe_FieldExists($fieldname, $table)
  * Set the page's title, meta description and meta keywords
  * Datas are supposed to be sanitized
  *
- * @package          Myiframe
- * @author           Instant Zero http://www.instant-zero.com
- * @copyright    (c) Instant Zero http://www.instant-zero.com
- *
  * @param string $page_title       Page's Title
  * @param string $meta_description Page's meta description
  * @param string $meta_keywords    Page's meta keywords
- * @return void
+ * @author           Instant Zero https://www.instant-zero.com
+ * @copyright    (c) Instant Zero https://www.instant-zero.com
  */
-function myiframe_set_metas($page_title = '', $meta_description = '', $meta_keywords = '')
+function myiframe_set_metas($page_title = '', $meta_description = '', $meta_keywords = ''): void
 {
     global $xoTheme, $xoTheme, $xoopsTpl;
     $xoopsTpl->assign('xoops_pagetitle', $page_title);

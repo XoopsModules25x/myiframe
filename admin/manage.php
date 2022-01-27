@@ -1,12 +1,15 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (https://www.instant-zero.com)
  * ****************************************************************************
  */
 
-//include  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+use Xmf\Module\Admin;
+use Xmf\Request;
+
 require_once __DIR__ . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
@@ -30,8 +33,8 @@ if (!myiframe_FieldExists('frame_frameid', $GLOBALS['xoopsDB']->prefix('myiframe
 
 $module_id = $xoopsModule->getVar('mid');
 $op        = 'default';
-/** @var MyiframeMyiframeHandler $iframeHandler */
-$iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
+/** @var MyiframeBaseHandler $iframeHandler */
+$iframeHandler = $helper->getHandler('MyiframeBase');
 
 /**
  * @param $frameid
@@ -48,7 +51,7 @@ $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
  * @param $url
  * @param $LabelSubmitButton
  */
-function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, $align, $frameborder, $marginwidth, $marginheight, $scrolling, $url, $LabelSubmitButton)
+function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, $align, $frameborder, $marginwidth, $marginheight, $scrolling, $url, $LabelSubmitButton): void
 {
     require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
     global $xoopsModule;
@@ -84,12 +87,12 @@ function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, 
         $sform->addElement(new \XoopsFormHidden('frameid', $frameid), false);
     }
 
-    $button_tray = new \XoopsFormElementTray('', '');
-    $submit_btn  = new \XoopsFormButton('', 'submit', $LabelSubmitButton, 'submit');
-    $button_tray->addElement($submit_btn);
+    $buttonTray = new \XoopsFormElementTray('', '');
+    $submit_btn = new \XoopsFormButton('', 'submit', $LabelSubmitButton, 'submit');
+    $buttonTray->addElement($submit_btn);
     $cancel_btn = new \XoopsFormButton('', 'reset', _AM_MYIFRAME_RESETBUTTON, 'reset');
-    $button_tray->addElement($cancel_btn);
-    $sform->addElement($button_tray);
+    $buttonTray->addElement($cancel_btn);
+    $sform->addElement($buttonTray);
     $sform->display();
     require_once __DIR__ . '/admin_footer.php';
 }
@@ -98,19 +101,19 @@ function addEditForm($frameid, $Action, $FormTitle, $longdesc, $width, $height, 
 // **** Main ********************************************************************************************************************************
 // ******************************************************************************************************************************************
 
-$op    = \Xmf\Request::getCmd('op', '');
+$op = Request::getCmd('op', '');
 
 switch ($op) {
     case 'verifybeforeedit':
-        if (isset($_POST['submit']) && '' !== $_POST['submit']) {
+        if (Request::hasVar('submit', 'POST') && '' !== $_POST['submit']) {
             if ('' === $_POST['longdesc']) {
                 xoops_cp_header();
-                $adminObject = \Xmf\Module\Admin::getInstance();
+                $adminObject = Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
                 echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
                 echo '<tr><td class="odd">';
                 echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
-                echo _AM_MYIFRAME_ERROR_ADD_INDEX;
+                echo _AM_MYIFRAME_ERROR_ADD_INDEX . ' 1';
                 echo '</td></tr></table>';
                 require_once __DIR__ . '/admin_footer.php';
                 xoops_cp_footer();
@@ -137,13 +140,12 @@ switch ($op) {
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);
         }
         break;
-
     case 'edit':
         xoops_cp_header();
-        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
-        if (isset($_GET['frameid'])) {
-            $frameid = \Xmf\Request::getInt('frameid', 0, 'GET');
+        if (Request::hasVar('frameid', 'GET')) {
+            $frameid = Request::getInt('frameid', 0, 'GET');
             $frame   = $iframeHandler->get($frameid);
             addEditForm(
                 $frameid,
@@ -154,7 +156,7 @@ switch ($op) {
                 $frame->getVar('frame_height', 'e'),
                 $frame->getVar('frame_align', 'e'),
                 $frame->getVar('frame_frameborder', 'e'),
-                        $frame->getVar('frame_marginwidth', 'e'),
+                $frame->getVar('frame_marginwidth', 'e'),
                 $frame->getVar('frame_marginheight', 'e'),
                 $frame->getVar('frame_scrolling', 'e'),
                 $frame->getVar('frame_url', 'e'),
@@ -162,56 +164,58 @@ switch ($op) {
             );
         } else {
             xoops_cp_header();
-            $adminObject = \Xmf\Module\Admin::getInstance();
+            $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
             echo '<tr><td class="odd">';
             echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
-            echo _AM_MYIFRAME_ERROR_ADD_INDEX;
+            echo _AM_MYIFRAME_ERROR_ADD_INDEX. ' 2';
             echo "</td></tr></table>\n";
             require_once __DIR__ . '/admin_footer.php';
             xoops_cp_footer();
             exit();
         }
         break;
-
     case 'delete':
         if (!isset($_POST['ok'])) {
             xoops_cp_header();
-            $adminObject = \Xmf\Module\Admin::getInstance();
+            $adminObject = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             echo '<h4>' . _AM_MYIFRAME_CONFIG . '</h4>';
-            xoops_confirm([
-                              'op'      => 'delete',
-                              'frameid' => \Xmf\Request::getInt('frameid', 0, 'GET'),
-                              'ok'      => 1
-                          ], 'manage.php', _AM_MYIFRAME_RUSUREDEL);
+            xoops_confirm(
+                [
+                    'op'      => 'delete',
+                    'frameid' => Request::getInt('frameid', 0, 'GET'),
+                    'ok'      => 1,
+                ],
+                'manage.php',
+                _AM_MYIFRAME_RUSUREDEL
+            );
             require_once __DIR__ . '/admin_footer.php';
         } else {
             if (empty($_POST['frameid'])) {
-                redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX);
+                redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX. ' 3');
             }
-            $frameid = \Xmf\Request::getInt('frameid', 0, 'POST');
+            $frameid = Request::getInt('frameid', 0, 'POST');
             $critere = new \Criteria('frame_frameid', $frameid, '=');
             $iframeHandler->deleteAll($critere);
             redirect_header('manage.php', 1, _AM_MYIFRAME_DBUPDATED);
         }
         break;
-
     case 'verifytoadd':
-        if (isset($_POST['submit']) && '' !== $_POST['submit']) {
+        if (Request::hasVar('submit', 'POST') && '' !== $_POST['submit']) {
             if ('' === $_POST['url']) {
                 xoops_cp_header();
-                $adminObject = \Xmf\Module\Admin::getInstance();
+                $adminObject = Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
                 echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
                 echo '<tr><td class="odd">';
                 echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
-                echo _AM_MYIFRAME_ERROR_ADD_INDEX;
+                echo _AM_MYIFRAME_ERROR_ADD_INDEX. ' 4';
                 echo "</td></tr></table>\n";
                 require_once __DIR__ . '/admin_footer.php';
                 xoops_cp_footer();
-                $adminObject = \Xmf\Module\Admin::getInstance();
+                $adminObject = Admin::getInstance();
                 $adminObject->displayNavigation(basename(__FILE__));
                 exit();
             }
@@ -229,23 +233,21 @@ switch ($op) {
             $frame->setVar('frame_uid', $xoopsUser->getVar('uid'));
             $res = $iframeHandler->insert($frame);
             if (!$res) {
-                redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_ADD_INDEX);
+                redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_ADD_INDEX. ' 5');
             }
             redirect_header('manage.php', 1, _AM_MYIFRAME_ADDED_OK);
         }
         break;
-
     case 'addframe':
         xoops_cp_header();
-        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         addEditForm(0, 'verifytoadd', _AM_MYIFRAME_CONFIG, '', '100%', '', '', '0', '0', '0', 1, '', _AM_MYIFRAME_ADDBUTTON);
         break;
-
     case 'default':
     default:
         xoops_cp_header();
-        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         echo '<h4>' . _AM_MYIFRAME_CONFIG . "</h4><br>\n";
         echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";

@@ -1,46 +1,49 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (https://www.instant-zero.com)
  * ****************************************************************************
  */
 
-require_once  dirname(dirname(__DIR__)) . '/mainfile.php';
-require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
+use Xmf\Request;
+
+
 $GLOBALS['xoopsOption']['template_main'] = 'myiframe.tpl';
+require __DIR__ . '/header.php';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
 $suplparam = '';
 if (isset($_GET)) {
     foreach ($_GET as $k => $v) {
-        if ('IFRAMEID' !== strtoupper(trim($k))) {
+        if ('IFRAMEID' !== \mb_strtoupper(trim($k))) {
             $suplparam .= $k . '=' . $v . '&';
         }
     }
 }
 
-if (strlen(xoops_trim($suplparam)) > 0) {
-    $suplparam = substr($suplparam, 0, -1);
+if (mb_strlen(xoops_trim($suplparam)) > 0) {
+    $suplparam = mb_substr($suplparam, 0, -1);
 }
 
-/** @var \MyiframeMyiframeHandler $iframeHandler */
-$iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
+/** @var \MyiframeBaseHandler $iframeHandler */
+$iframeHandler = $helper->getHandler('MyiframeBase');
 
-if (isset($_GET['iframeid'])) {
+if (Request::hasVar('iframeid', 'GET')) {
     $tblalign     = [
         'top',
         'middle',
         'bottom',
         'left',
-        'rigth'
+        'rigth',
     ];
     $tblscrolling = [
         'yes',
         'no',
-        'auto'
+        'auto',
     ];
-    $frameid      = \Xmf\Request::getInt('iframeid', 0, 'GET');
+    $frameid      = Request::getInt('iframeid', 0, 'GET');
 
     $frame = $iframeHandler->get($frameid);
 
@@ -90,4 +93,4 @@ if (isset($_GET['iframeid'])) {
         $xoopsTpl->assign('frame_error', _MYIFRAME_FRAME_ERROR);
     }
 }
-include XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';

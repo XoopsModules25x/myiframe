@@ -1,8 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (https://www.instant-zero.com)
  * ****************************************************************************
  */
 
@@ -25,7 +25,7 @@ define('_MI_MYIFRAME_OPT1_DSC', "when the module's index page is called without 
 define('_MI_MYIFRAME_BNAME1', 'Show an iframe');
 
 //Help
-define('_MI_MYIFRAME_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_MYIFRAME_DIRNAME', basename(dirname(__DIR__, 2)));
 define('_MI_MYIFRAME_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_MYIFRAME_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_MYIFRAME_OVERVIEW', 'Overview');
