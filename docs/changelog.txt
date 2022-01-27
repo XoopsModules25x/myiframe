@@ -2,9 +2,6 @@
 <hr>
 - namespaces (mamba)
 - class autoloading with preloads(mamba)
-- added Feedback (mamba)
-- added Migrate (mamba)
-- added Stats (mamba)
 - renamed 'PHP_SELF' to 'SCRIPT_NAME' (mamba)
 - PHP7, PHP8 adjustments (mamba)
 - symantic versioning (mamba)
