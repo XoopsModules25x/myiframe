@@ -8,6 +8,7 @@
 - added Blocksadmin class (mamba)
 - strict_types (mamba)
 - added Testdata buttons (mamba)
+- SQL quotations (JJDai54)
 
 <h5>1.66 RC-1 [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.3
 <hr>
