@@ -15,8 +15,8 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 
 $modversion = [
     'version'             => '1.67.0',
-    'module_status'       => 'Beta 1',
-    'release_date'        => '2022/01/26',
+    'module_status'       => 'Beta 2',
+    'release_date'        => '2022/03/28',
     'name'                => _MI_MYIFRAME_NAME,
     'description'         => _MI_MYIFRAME_DESC,
     'credits'             => '',
@@ -32,7 +32,7 @@ $modversion = [
     'min_admin'           => '1.2',
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS',
-    'module_release'      => '05/07/2017',
+    'module_release'      => '03/28/2022',
     'system_menu'         => 1,
     //sql tables
     'sqlfile'             => ['mysql' => 'sql/mysql.sql'],

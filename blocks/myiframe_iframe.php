@@ -6,6 +6,14 @@
  * Copyright (c) Hervé Thouzard of Instant Zero (https://www.instant-zero.com)
  * ****************************************************************************
  */
+
+use XoopsModules\Newbb;
+use XoopsModules\Myiframe\{
+    Constants,
+    Helper
+};
+/** @var Helper $helper */
+
 require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
 /**
@@ -14,6 +22,10 @@ require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
  */
 function b_myiframe_iframe_show($options)
 {
+    if (!class_exists(Helper::class)) {
+        return false;
+    }
+    $helper = Helper::getInstance();
     $block         = [];
     $tblalign      = [
         'top',
@@ -52,6 +64,11 @@ function b_myiframe_iframe_show($options)
  */
 function b_myiframe_iframe_edit($options)
 {
+    if (!class_exists(Helper::class)) {
+        return false;
+    }
+    $helper = Helper::getInstance();
+
     /** @var \MyiframeBaseHandler $iframeHandler */
     $iframeHandler = $helper->getHandler('MyiframeBase');
     $frarray       = [];
