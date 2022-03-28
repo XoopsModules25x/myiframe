@@ -17,7 +17,7 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
 {
     /**
      * @param bool $isNew
-     * @return myiframe
+     * @return \XoopsModules\Myiframe\MyiframeBase
      */
     public function create($isNew = true)
     {
@@ -31,7 +31,7 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
 
     /**
      * @param int $id
-     * @return myiframe|null
+     * @return \XoopsModules\Myiframe\MyiframeBase|null
      */
     public function get($id)
     {
@@ -150,8 +150,8 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
     }
 
     /**
-     * @param \XoopsModules\Myiframe\Criteria $criteria
-     * @param bool                            $id_as_key
+     * @param \Criteria|null $criteria
+     * @param bool           $id_as_key
      * @return array
      */
     public function &getObjects(\Criteria $criteria = null, $id_as_key = false)
@@ -184,7 +184,7 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
     }
 
     /**
-     * @param \XoopsModules\Myiframe\CriteriaCompo $criteria
+     * @param \CriteriaCompo|null $criteria
      * @return int
      */
     public function getCount(\CriteriaCompo $criteria = null)
@@ -203,7 +203,7 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
     }
 
     /**
-     * @param \XoopsModules\Myiframe\CriteriaCompo $criteria
+     * @param \CriteriaCompo|null $criteria
      * @return bool
      */
     public function deleteAll(\CriteriaCompo $criteria = null)
