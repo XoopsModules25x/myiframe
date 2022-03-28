@@ -1,12 +1,21 @@
-<?php
+<?php declare(strict_types=1);
+
 /**
  * ****************************************************************************
  * MYIFRAME - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard of Instant Zero (http://www.instant-zero.com)
+ * Copyright (c) Hervé Thouzard of Instant Zero (https://www.instant-zero.com)
  * ****************************************************************************
  */
 
-include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
+use XoopsModules\Newbb;
+use XoopsModules\Myiframe\{
+    Constants,
+    Helper
+};
+
+/** @var Helper $helper */
+
+require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
 
 /**
  * @param $options
@@ -14,21 +23,25 @@ include_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
  */
 function b_myiframe_iframe_show($options)
 {
+    if (!class_exists(Helper::class)) {
+        return false;
+    }
+    $frame         = null;
+    $helper        = Helper::getInstance();
     $block         = [];
     $tblalign      = [
         'top',
         'middle',
         'bottom',
         'left',
-        'rigth'
+        'rigth',
     ];
     $tblscrolling  = [
         'yes',
         'no',
-        'auto'
+        'auto',
     ];
-    $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
-    $frame         = null;
+    $iframeHandler = $helper->getHandler('MyiframeBase');
     $frame         = $iframeHandler->get($options[0]);
 
     if (is_object($frame)) {
@@ -42,6 +55,7 @@ function b_myiframe_iframe_show($options)
         $block['scrolling']    = $tblscrolling[$frame->getVar('frame_scrolling') - 1];
         $block['url']          = $frame->getVar('frame_url');
     }
+
     return $block;
 }
 
@@ -51,10 +65,15 @@ function b_myiframe_iframe_show($options)
  */
 function b_myiframe_iframe_edit($options)
 {
-    /** @var \MyiframeMyiframeHandler $iframeHandler */
-    $iframeHandler = xoops_getModuleHandler('myiframe', 'myiframe');
+    if (!class_exists(Helper::class)) {
+        return false;
+    }
+    $helper = Helper::getInstance();
+
+    /** @var \MyiframeBaseHandler $iframeHandler */
+    $iframeHandler = $helper->getHandler('MyiframeBase');
     $frarray       = [];
-    $critere       = new Criteria('1', '1', '=');
+    $critere       = new \Criteria('1', '1', '=');
     $critere->setSort('frame_description');
     $frarray = $iframeHandler->getObjects($critere);
 
@@ -68,18 +87,19 @@ function b_myiframe_iframe_edit($options)
         $form .= '>' . $oneframe->getVar('frame_description') . '</option>';
     }
     $form .= "</select>\n";
+
     return $form;
 }
 
 /**
  * @param $options
  */
-function b_myiframe_iframe_onthefly($options)
+function b_myiframe_iframe_onthefly($options): void
 {
     $options = explode('|', $options);
-    $block   = &b_myiframe_iframe_show($options);
+    $block   = b_myiframe_iframe_show($options);
 
-    $tpl = new XoopsTpl();
+    $tpl = new \XoopsTpl();
     $tpl->assign('block', $block);
     $tpl->display('db:myiframe_block_show.tpl');
 }

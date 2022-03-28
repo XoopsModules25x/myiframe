@@ -1,4 +1,21 @@
-<h5>1.66 RC-1 [NOT RELEASED]</h5>
+<h5>1.67.0 Beta 2 [NOT RELEASED]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.26, PHP 8.0.14, PHP 8.1.2
+<hr>
+- type hinting, cosmetics (mamba)
+- fix missing $helper in blocks (heyula/mamba)
+
+<h5>1.67.0 Beta 1 [2022-01-26]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.26, PHP 8.0.14, PHP 8.1.2
+<hr>
+- namespaces (mamba)
+- class autoloading with preloads(mamba)
+- renamed 'PHP_SELF' to 'SCRIPT_NAME' (mamba)
+- PHP7, PHP8 adjustments (mamba)
+- symantic versioning (mamba)
+- added Blocksadmin class (mamba)
+- strict_types (mamba)
+- added Testdata buttons (mamba)
+- SQL quotations (JJDai54)
+
+<h5>1.66 RC-1 [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.3
 <hr>
 - renamed module logo to "logoModule.png" (mamba)
 - changed dirname in xoops_version.php to "basename(__DIR__)" (mamba)
