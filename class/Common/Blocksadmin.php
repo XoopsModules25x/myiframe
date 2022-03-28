@@ -59,7 +59,7 @@ class Blocksadmin
         \xoops_loadLanguage('admin/blocksadmin', 'system');
         \xoops_loadLanguage('admin/groups', 'system');
         \xoops_loadLanguage('common', $this->moduleDirName);
-        \xoops_loadLanguage('blocksadmin', $this->moduleDirName);
+//        \xoops_loadLanguage('blocksadmin', $this->moduleDirName);
     }
 
     /**
