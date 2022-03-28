@@ -8,11 +8,13 @@
  */
 
 use Xmf\Request;
-
+/** @var Helper $helper */
 
 $GLOBALS['xoopsOption']['template_main'] = 'myiframe.tpl';
 require __DIR__ . '/header.php';
 require_once XOOPS_ROOT_PATH . '/header.php';
+
+$tblalign = [];
 
 $suplparam = '';
 if (isset($_GET)) {
@@ -53,11 +55,11 @@ if (Request::hasVar('iframeid', 'GET')) {
         $xoopsTpl->assign('longdesc', $frame->getVar('frame_description'));
         $xoopsTpl->assign('width', $frame->getVar('frame_width'));
         $xoopsTpl->assign('height', $frame->getVar('frame_height'));
-        $xoopsTpl->assign('align', $tblalign[$frame->getVar('frame_align') - 1]);
+        $xoopsTpl->assign('align', $tblalign[(string)($frame->getVar('frame_align') - 1)]);
         $xoopsTpl->assign('frameborder', $frame->getVar('frame_frameborder'));
         $xoopsTpl->assign('marginwidth', $frame->getVar('frame_marginwidth'));
         $xoopsTpl->assign('marginheight', $frame->getVar('frame_marginheight'));
-        $xoopsTpl->assign('scrolling', $tblscrolling[$frame->getVar('frame_scrolling') - 1]);
+        $xoopsTpl->assign('scrolling', $tblscrolling[(string)($frame->getVar('frame_scrolling') - 1)]);
         if ('' !== xoops_trim($suplparam)) {
             $xoopsTpl->assign('url', $frame->getVar('frame_url') . '?' . $suplparam);
         } else {

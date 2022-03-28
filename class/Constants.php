@@ -31,24 +31,24 @@ final class Constants
      * Constant definition
      */
 
-    const DISALLOW = 0;
+    public const DISALLOW = 0;
 
     /**
      * no delay XOOPS redirect delay (in seconds)
      */
-    const REDIRECT_DELAY_NONE = 0;
+    public const REDIRECT_DELAY_NONE = 0;
     /**
      * short XOOPS redirect delay (in seconds)
      */
-    const REDIRECT_DELAY_SHORT = 1;
+    public const REDIRECT_DELAY_SHORT = 1;
     /**
      * medium XOOPS redirect delay (in seconds)
      */
-    const REDIRECT_DELAY_MEDIUM = 3;
+    public const REDIRECT_DELAY_MEDIUM = 3;
     /**
      * long XOOPS redirect delay (in seconds)
      */
-    const REDIRECT_DELAY_LONG = 7;
+    public const REDIRECT_DELAY_LONG = 7;
 
     /**#@-*/
 }

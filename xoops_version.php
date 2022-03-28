@@ -79,7 +79,7 @@ if (is_object($xoopsModule) && $xoopsModule->getVar('dirname') == $modversion['d
         $result = $GLOBALS['xoopsDB']->query($sql);
         while (false !== ($myrow = $GLOBALS['xoopsDB']->fetchArray($result))) {
             if ('' !== xoops_trim($myrow['frame_description'])) {
-                $modversion['sub'][$i]['name'] = htmlspecialchars($myrow['frame_description']);
+                $modversion['sub'][$i]['name'] = htmlspecialchars($myrow['frame_description'], ENT_QUOTES | ENT_HTML5);
                 $modversion['sub'][$i]['url']  = 'index.php?iframeid=' . (int)$myrow['frame_frameid'];
                 $i++;
             }

@@ -25,6 +25,7 @@ function b_myiframe_iframe_show($options)
     if (!class_exists(Helper::class)) {
         return false;
     }
+    $frame         = null;
     $helper = Helper::getInstance();
     $block         = [];
     $tblalign      = [
@@ -40,7 +41,6 @@ function b_myiframe_iframe_show($options)
         'auto',
     ];
     $iframeHandler = $helper->getHandler('MyiframeBase');
-    $frame         = null;
     $frame         = $iframeHandler->get($options[0]);
 
     if (is_object($frame)) {

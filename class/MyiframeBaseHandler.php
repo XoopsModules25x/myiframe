@@ -168,7 +168,9 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
             $start = $criteria->getStart();
         }
         $result = $this->db->query($sql, $limit, $start);
+        /** @var array $myrow */
         if ($result instanceof \mysqli_result) {
+
             while (false !== ($myrow = $this->db->fetchArray($result))) {
                 if (!$id_as_key) {
                     $ret[] = new MyiframeBase($myrow);
