@@ -92,7 +92,7 @@ class Blocksadmin
         echo "<form action='" . $_SERVER['SCRIPT_NAME'] . "' name='blockadmin' method='post'>";
         echo $GLOBALS['xoopsSecurity']->getTokenHTML();
         echo "<table width='100%' class='outer' cellpadding='4' cellspacing='1'>
-        <tr valign='middle'><th align='center'>" . \_AM_SYSTEM_BLOCKS_TITLE . "</th><th align='center' nowrap='nowrap'>" . \constant('CO_' . $this->moduleDirNameUpper . '_' . 'SIDE') . '<br>' . _LEFT . '-' . _CENTER . '-' . _RIGHT . "</th>
+        <tr valign='middle'><th align='center'>" . \_AM_SYSTEM_BLOCKS_TITLE . "</th><th align='center' nowrap='nowrap'>" . \constant('CO_' . $this->moduleDirNameUpper . '_' . 'SIDE') . '<br>' . \_LEFT . '-' . \_CENTER . '-' . \_RIGHT . "</th>
         <th align='center'>" . \constant('CO_' . $this->moduleDirNameUpper . '_' . 'WEIGHT') . "</th>
         <th align='center'>" . \constant('CO_' . $this->moduleDirNameUpper . '_' . 'VISIBLE') . "</th><th align='center'>" . \_AM_SYSTEM_BLOCKS_VISIBLEIN . "</th>
         <th align='center'>" . \_AM_SYSTEM_ADGS . "</th>
@@ -103,17 +103,17 @@ class Blocksadmin
         $blockCount = \count($blockArray);
         $class      = 'even';
         $cachetimes = [
-            0       => _NOCACHE,
-            30      => \sprintf(_SECONDS, 30),
-            60      => _MINUTE,
-            300     => \sprintf(_MINUTES, 5),
-            1800    => \sprintf(_MINUTES, 30),
-            3600    => _HOUR,
-            18000   => \sprintf(_HOURS, 5),
-            86400   => _DAY,
-            259200  => \sprintf(_DAYS, 3),
-            604800  => _WEEK,
-            2592000 => _MONTH,
+            0       => \_NOCACHE,
+            30      => \sprintf(\_SECONDS, 30),
+            60      => \_MINUTE,
+            300     => \sprintf(\_MINUTES, 5),
+            1800    => \sprintf(\_MINUTES, 30),
+            3600    => \_HOUR,
+            18000   => \sprintf(\_HOURS, 5),
+            86400   => \_DAY,
+            259200  => \sprintf(\_DAYS, 3),
+            604800  => \_WEEK,
+            2592000 => \_MONTH,
         ];
         foreach ($blockArray as $i) {
             $groupsPermissions = $grouppermHandler->getGroupIds('block_read', $i->getVar('bid'));
@@ -191,7 +191,7 @@ class Blocksadmin
                     </div>
                 </td>
                 <td class='$class' align='center'><input type='text' name='weight[" . $i->getVar('bid') . "]' value='" . $i->getVar('weight') . "' size='5' maxlength='5'></td>
-                <td class='$class' align='center' nowrap><input type='radio' name='visible[" . $i->getVar('bid') . "]' value='1'$sel1>" . _YES . "&nbsp;<input type='radio' name='visible[" . $i->getVar('bid') . "]' value='0'$sel0>" . _NO . '</td>';
+                <td class='$class' align='center' nowrap><input type='radio' name='visible[" . $i->getVar('bid') . "]' value='1'$sel1>" . \_YES . "&nbsp;<input type='radio' name='visible[" . $i->getVar('bid') . "]' value='0'$sel0>" . \_NO . '</td>';
 
             echo "<td class='$class' align='center'><select size='5' name='bmodule[" . $i->getVar('bid') . "][]' id='bmodule[" . $i->getVar('bid') . "][]' multiple='multiple'>";
             foreach ($moduleList as $k => $v) {
@@ -212,8 +212,8 @@ class Blocksadmin
             // Actions
 
             echo "<td class='$class' align='center'>
-                <a href='blocksadmin.php?op=edit&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/edit.png' . " alt='" . _EDIT . "' title='" . _EDIT . "'></a> 
-                <a href='blocksadmin.php?op=clone&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/editcopy.png' . " alt='" . _CLONE . "' title='" . _CLONE . "'></a>";
+                <a href='blocksadmin.php?op=edit&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/edit.png' . " alt='" . \_EDIT . "' title='" . \_EDIT . "'></a> 
+                <a href='blocksadmin.php?op=clone&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/editcopy.png' . " alt='" . \_CLONE . "' title='" . \_CLONE . "'></a>";
             //            if ('S' !== $i->getVar('block_type') && 'M' !== $i->getVar('block_type')) {
             //                echo "&nbsp;<a href='" . XOOPS_URL . '/modules/system/admin.php?fct=blocksadmin&amp;op=delete&amp;bid=' . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/delete.png' . " alt='" . _DELETE . "' title='" . _DELETE . "'>
             //                     </a>";
@@ -222,7 +222,7 @@ class Blocksadmin
             //            if ('S' !== $i->getVar('block_type') && 'M' !== $i->getVar('block_type')) {
             if (!\in_array($i->getVar('block_type'), ['M', 'S'])) {
                 echo "&nbsp;
-                <a href='blocksadmin.php?op=delete&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/delete.png' . " alt='" . _DELETE . "' title='" . _DELETE . "'>
+                <a href='blocksadmin.php?op=delete&amp;bid=" . $i->getVar('bid') . "'><img src=" . $pathIcon16 . '/delete.png' . " alt='" . \_DELETE . "' title='" . \_DELETE . "'>
                      </a>";
             }
             echo "
@@ -237,7 +237,7 @@ class Blocksadmin
             ";
             $class = ('even' === $class) ? 'odd' : 'even';
         }
-        echo "<tr><td class='foot' align='center' colspan='8'> <input type='hidden' name='op' value='order'>" . $GLOBALS['xoopsSecurity']->getTokenHTML() . "<input type='submit' name='submit' value='" . _SUBMIT . "'></td></tr></table></form><br><br>";
+        echo "<tr><td class='foot' align='center' colspan='8'> <input type='hidden' name='op' value='order'>" . $GLOBALS['xoopsSecurity']->getTokenHTML() . "<input type='submit' name='submit' value='" . \_SUBMIT . "'></td></tr></table></form><br><br>";
     }
 
     /**
@@ -650,17 +650,17 @@ class Blocksadmin
         }
         $cache_select = new \XoopsFormSelect(\_AM_SYSTEM_BLOCKS_BCACHETIME, 'bcachetime', $block['bcachetime']);
         $cache_select->addOptionArray([
-                                          0       => _NOCACHE,
-                                          30      => \sprintf(_SECONDS, 30),
-                                          60      => _MINUTE,
-                                          300     => \sprintf(_MINUTES, 5),
-                                          1800    => \sprintf(_MINUTES, 30),
-                                          3600    => _HOUR,
-                                          18000   => \sprintf(_HOURS, 5),
-                                          86400   => _DAY,
-                                          259200  => \sprintf(_DAYS, 3),
-                                          604800  => _WEEK,
-                                          2592000 => _MONTH,
+                                          0       => \_NOCACHE,
+                                          30      => \sprintf(\_SECONDS, 30),
+                                          60      => \_MINUTE,
+                                          300     => \sprintf(\_MINUTES, 5),
+                                          1800    => \sprintf(\_MINUTES, 30),
+                                          3600    => \_HOUR,
+                                          18000   => \sprintf(\_HOURS, 5),
+                                          86400   => \_DAY,
+                                          259200  => \sprintf(\_DAYS, 3),
+                                          604800  => \_WEEK,
+                                          2592000 => \_MONTH,
                                       ]);
         $form->addElement($cache_select);
 
@@ -677,15 +677,15 @@ class Blocksadmin
         $form->addElement(new \XoopsFormHidden('fct', 'blocksadmin'));
         $buttonTray = new \XoopsFormElementTray('', '&nbsp;');
         if ($block['is_custom']) {
-            $buttonTray->addElement(new \XoopsFormButton('', 'previewblock', _PREVIEW, 'submit'));
+            $buttonTray->addElement(new \XoopsFormButton('', 'previewblock', \_PREVIEW, 'submit'));
         }
 
         //Submit buttons
         $buttonTray   = new \XoopsFormElementTray('', '');
-        $submitButton = new \XoopsFormButton('', 'submitblock', _SUBMIT, 'submit');
+        $submitButton = new \XoopsFormButton('', 'submitblock', \_SUBMIT, 'submit');
         $buttonTray->addElement($submitButton);
 
-        $cancelButton = new \XoopsFormButton('', '', _CANCEL, 'button');
+        $cancelButton = new \XoopsFormButton('', '', \_CANCEL, 'button');
         $cancelButton->setExtra('onclick="history.go(-1)"');
         $buttonTray->addElement($cancelButton);
 
