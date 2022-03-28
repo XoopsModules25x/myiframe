@@ -154,7 +154,7 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
      * @param bool           $id_as_key
      * @return array
      */
-    public function &getObjects(\Criteria $criteria = null, $id_as_key = false)
+    public function &getObjects(\Criteria $criteria = null, $id_as_key = false): array
     {
         $ret   = [];
         $limit = $start = 0;
@@ -187,7 +187,7 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
      * @param \CriteriaCompo|null $criteria
      * @return int
      */
-    public function getCount(\CriteriaCompo $criteria = null)
+    public function getCount(\CriteriaCompo $criteria = null): int
     {
         $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('myiframe');
         if (($criteria instanceof \CriteriaCompo) || ($criteria instanceof \Criteria)) {
@@ -206,7 +206,7 @@ class MyiframeBaseHandler extends \XoopsObjectHandler
      * @param \CriteriaCompo|null $criteria
      * @return bool
      */
-    public function deleteAll(\CriteriaCompo $criteria = null)
+    public function deleteAll(\CriteriaCompo $criteria = null): bool
     {
         $sql = 'DELETE FROM ' . $this->db->prefix('myiframe');
         if (($criteria instanceof \CriteriaCompo) || ($criteria instanceof \Criteria)) {

@@ -583,7 +583,7 @@ class Blocksadmin
      * @param array|null $block
      * @return void
      */
-    public function render(?array $block = null)
+    public function render(?array $block = null): void
     {
         \xoops_load('XoopsFormLoader');
         \xoops_loadLanguage('common', $this->moduleDirNameUpper);
