@@ -47,7 +47,7 @@ function xoops_module_uninstall_myiframe(\XoopsModule $module)
 
     // Rename uploads folder to BAK and add date to name
     $uploadDirectory = $GLOBALS['xoops']->path("uploads/$moduleDirName");
-    $dirInfo = new \SplFileInfo($uploadDirectory);
+    $dirInfo         = new \SplFileInfo($uploadDirectory);
     if ($dirInfo->isDir()) {
         // The directory exists so rename it
         $date = date('Y-m-d');

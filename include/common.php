@@ -83,8 +83,10 @@ if (!isset($GLOBALS['xoopsTpl']) || !($GLOBALS['xoopsTpl'] instanceof \XoopsTpl)
 $GLOBALS['xoopsTpl']->assign('mod_url', $helper->url());
 // Local icons path
 if (is_object($helper->getModule())) {
-    $pathModIcon16 = $helper->getModule()->getInfo('modicons16');
-    $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
+    $pathModIcon16 = $helper->getModule()
+                            ->getInfo('modicons16');
+    $pathModIcon32 = $helper->getModule()
+                            ->getInfo('modicons32');
 
     $GLOBALS['xoopsTpl']->assign('pathModIcon16', XOOPS_URL . '/modules/' . $moduleDirName . '/' . $pathModIcon16);
     $GLOBALS['xoopsTpl']->assign('pathModIcon32', $pathModIcon32);

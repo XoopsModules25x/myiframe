@@ -8,6 +8,7 @@
  */
 
 use Xmf\Request;
+
 /** @var Helper $helper */
 
 $GLOBALS['xoopsOption']['template_main'] = 'myiframe.tpl';

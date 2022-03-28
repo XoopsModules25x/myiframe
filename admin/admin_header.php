@@ -15,13 +15,14 @@
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
- * @author     XOOPS Development Team
+ * @author       XOOPS Development Team
  */
 
 use Xmf\Module\Admin;
 use XoopsModules\Myiframe\{
     Helper
 };
+
 /** @var Admin $adminObject */
 /** @var Helper $helper */
 
@@ -29,9 +30,9 @@ require dirname(__DIR__) . '/preloads/autoloader.php';
 
 require dirname(__DIR__, 3) . '/include/cp_header.php';
 //require dirname(__DIR__, 3) . '/class/xoopsformloader.php';
-require  dirname(__DIR__) . '/include/common.php';
+require dirname(__DIR__) . '/include/common.php';
 
-$moduleDirName = \basename(\dirname(__DIR__));
+$moduleDirName      = \basename(\dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 $adminObject = Admin::getInstance();

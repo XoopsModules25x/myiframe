@@ -169,7 +169,7 @@ switch ($op) {
             echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
             echo '<tr><td class="odd">';
             echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
-            echo _AM_MYIFRAME_ERROR_ADD_INDEX. ' 2';
+            echo _AM_MYIFRAME_ERROR_ADD_INDEX . ' 2';
             echo "</td></tr></table>\n";
             require_once __DIR__ . '/admin_footer.php';
             xoops_cp_footer();
@@ -194,7 +194,7 @@ switch ($op) {
             require_once __DIR__ . '/admin_footer.php';
         } else {
             if (empty($_POST['frameid'])) {
-                redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX. ' 3');
+                redirect_header('manage.php', 2, _AM_MYIFRAME_ERROR_ADD_INDEX . ' 3');
             }
             $frameid = Request::getInt('frameid', 0, 'POST');
             $critere = new \Criteria('frame_frameid', $frameid, '=');
@@ -211,7 +211,7 @@ switch ($op) {
                 echo "<table width='100%' border='0' cellspacing='1' class='outer'>\n";
                 echo '<tr><td class="odd">';
                 echo "<a href='manage.php'><h4>" . _AM_MYIFRAME_CONFIG . '</h4></a>';
-                echo _AM_MYIFRAME_ERROR_ADD_INDEX. ' 4';
+                echo _AM_MYIFRAME_ERROR_ADD_INDEX . ' 4';
                 echo "</td></tr></table>\n";
                 require_once __DIR__ . '/admin_footer.php';
                 xoops_cp_footer();
@@ -233,7 +233,7 @@ switch ($op) {
             $frame->setVar('frame_uid', $xoopsUser->getVar('uid'));
             $res = $iframeHandler->insert($frame);
             if (!$res) {
-                redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_ADD_INDEX. ' 5');
+                redirect_header('manage.php', 1, _AM_MYIFRAME_ERROR_ADD_INDEX . ' 5');
             }
             redirect_header('manage.php', 1, _AM_MYIFRAME_ADDED_OK);
         }

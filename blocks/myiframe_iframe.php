@@ -12,6 +12,7 @@ use XoopsModules\Myiframe\{
     Constants,
     Helper
 };
+
 /** @var Helper $helper */
 
 require_once XOOPS_ROOT_PATH . '/modules/myiframe/include/functions.php';
@@ -26,7 +27,7 @@ function b_myiframe_iframe_show($options)
         return false;
     }
     $frame         = null;
-    $helper = Helper::getInstance();
+    $helper        = Helper::getInstance();
     $block         = [];
     $tblalign      = [
         'top',
