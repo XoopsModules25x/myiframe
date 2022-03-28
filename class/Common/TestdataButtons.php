@@ -51,7 +51,7 @@ class TestdataButtons
      *
      * @return void
      */
-    public static function loadButtonConfig(Admin $adminObject): void
+    public static function loadButtonConfig($adminObject): void
     {
         $moduleDirName      = \basename(\dirname(__DIR__, 2));
         $moduleDirNameUpper = \mb_strtoupper($moduleDirName);

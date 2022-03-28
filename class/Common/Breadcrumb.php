@@ -18,6 +18,13 @@ namespace XoopsModules\Myiframe\Common;
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     https://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      lucio <lucio.rota@gmail.com>
+ *
+ * Example:
+ * $breadcrumb = new Breadcrumb();
+ * $breadcrumb->addLink( 'bread 1', 'index1.php' );
+ * $breadcrumb->addLink( 'bread 2', '' );
+ * $breadcrumb->addLink( 'bread 3', 'index3.php' );
+ * echo $breadcrumb->render();
  */
 
 /**

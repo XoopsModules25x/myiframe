@@ -36,6 +36,8 @@ class Helper extends \Xmf\Module\Helper
     }
 
     /**
+     * @param bool $debug
+     *
      * @return \XoopsModules\Myiframe\Helper
      */
     public static function getInstance(bool $debug = false): self
